@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.util.AttributeSet
+import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.cinemaddict.R
@@ -14,10 +15,31 @@ class GradientTextView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    private val gradientColors = intArrayOf(
-        ContextCompat.getColor(context, R.color.gradient_start_color),
-        ContextCompat.getColor(context, R.color.gradient_end_color)
-    )
+    @ColorRes
+    private var startColor: Int = R.color.primary_text
+
+    @ColorRes
+    private var endColor: Int = R.color.primary_text
+
+    private val linearGradient: LinearGradient by lazy {
+        LinearGradient(
+            0f,
+            0f,
+            width.toFloat(),
+            height.toFloat(),
+            ContextCompat.getColor(context, startColor),
+            ContextCompat.getColor(context, endColor),
+            Shader.TileMode.CLAMP
+        )
+    }
+
+    init {
+        context.obtainStyledAttributes(attrs, R.styleable.GradientTextView, defStyleAttr, 0).let {
+            startColor = it.getResourceId(R.styleable.GradientTextView_startColor, startColor)
+            endColor = it.getResourceId(R.styleable.GradientTextView_endColor, endColor)
+            it.recycle()
+        }
+    }
 
     override fun onLayout(
         changed: Boolean, left: Int, top: Int, right: Int,
@@ -26,15 +48,7 @@ class GradientTextView @JvmOverloads constructor(
         super.onLayout(changed, left, top, right, bottom)
 
         if (changed) {
-            paint.shader = LinearGradient(
-                0f,
-                0f,
-                width.toFloat(),
-                height.toFloat(),
-                gradientColors[0],
-                gradientColors[1],
-                Shader.TileMode.CLAMP
-            )
+            paint.shader = linearGradient
         }
     }
 }
