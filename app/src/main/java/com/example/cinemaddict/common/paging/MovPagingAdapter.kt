@@ -22,7 +22,7 @@ class MovPagingAdapter<T : MovPagingViewData, VDB : ViewDataBinding>(
         RecyclerView.ViewHolder(binding.root) {
 
         fun <T : MovPagingViewData> bind(item: T) = with(binding) {
-//            BR.viewData = item todo needed for use by dataBinding in xml
+//            binding.setVariable(BR.viewData, item) todo needed for use by dataBinding in xml
             executePendingBindings()
         }
     }
