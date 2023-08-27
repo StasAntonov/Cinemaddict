@@ -15,14 +15,14 @@ abstract class BaseRepository {
             if (response.isSuccessful) {
                 response.body()?.let {
                     ApiResponse.Success(it)
-                } ?: ApiResponse.Error("Data not found")
+                } ?: ApiResponse.Error(IllegalStateException("Data not found"))
             } else {
                 val errorData =
                     gson.fromJson(response.errorBody()?.charStream(), ErrorResponse::class.java)
-                ApiResponse.Error(errorData.errors.first())
+                ApiResponse.Error(IllegalStateException(errorData.errors.first()))
             }
         } catch (e: Throwable) {
-            ApiResponse.Error(e.message ?: "Something went wrong")
+            ApiResponse.Error(e)
         }
     }
 }
