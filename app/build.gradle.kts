@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("com.google.devtools.ksp")
     id("kotlin-android")
     id("com.google.dagger.hilt.android")
@@ -77,8 +76,8 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
 
     //hilt
-    implementation("com.google.dagger:hilt-android:2.46.1")
-    kapt("com.google.dagger:hilt-compiler:2.46.1")
+    implementation("com.google.dagger:hilt-android:2.47")
+    ksp("com.google.dagger:hilt-compiler:2.47")
 
     //navController
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
