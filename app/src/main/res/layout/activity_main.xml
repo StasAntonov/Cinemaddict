@@ -27,6 +27,7 @@
             android:elevation="0dp"
             android:minHeight="@dimen/bottom_navigation_view_min_height"
             app:itemIconSize="@dimen/bottom_navigation_view_icon_size"
+            app:itemRippleColor="@null"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/main_menu" />
