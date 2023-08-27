@@ -78,7 +78,7 @@ dependencies {
 
     //hilt
     implementation("com.google.dagger:hilt-android:2.47")
-    kapt("com.google.dagger:hilt-compiler:2.47")
+    ksp("com.google.dagger:hilt-compiler:2.47")
 
     //navController
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
