@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    text-->
+    <style name="Text">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:fontFamily">@font/lato_400</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="Text.Header">
+        <item name="android:textSize">@dimen/big_text_size</item>
+    </style>
+
+    <style name="Text.Header.Medium">
+        <item name="android:fontFamily">@font/lato_500</item>
+    </style>
+
+    <style name="Text.Header.Medium.Wide">
+        <item name="android:lineSpacingExtra">12sp</item>
+    </style>
+
+    <style name="Text.Title">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="Text.Title.Medium">
+        <item name="android:fontFamily">@font/lato_500</item>
+    </style>
+
+    <style name="Text.Title.Variant">
+        <item name="android:textColor">@color/variant_text</item>
+    </style>
+
+    <style name="Text.Title.Secondary">
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="Text.Hint">
+        <item name="android:fontFamily">@font/inter_500</item>
+        <item name="android:textSize">@dimen/hint_size</item>
+        <item name="android:textColor">@color/hint</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="Text.Highlight">
+        <item name="android:fontFamily">@font/lato_500</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="Text.SubTitle">
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="Text.SubTitle.White">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="Text.SubTitle.Format">
+        <item name="android:textColor">@color/format_text</item>
+    </style>
+
+    <style name="Text.SubTitle.Desc">
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="Text.Label">
+        <item name="android:textSize">@dimen/extra_small_text_size</item>
+    </style>
+</resources>
