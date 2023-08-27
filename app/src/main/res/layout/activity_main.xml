@@ -22,15 +22,14 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_navigation"
             android:layout_width="match_parent"
-            app:menu="@menu/main_menu"
-            android:elevation="0dp"
-            android:minHeight="44dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="12dp"
-            app:labelVisibilityMode="unlabeled"
-            android:background="@color/background"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:background="@color/background"
+            android:elevation="0dp"
+            android:minHeight="@dimen/bottom_navigation_view_min_height"
+            app:itemIconSize="@dimen/bottom_navigation_view_icon_size"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
