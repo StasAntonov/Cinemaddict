@@ -21,6 +21,7 @@
     <dimen name="extra_small_text_size">8sp</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="hint_size">14sp</dimen>
+    <dimen name="text_size">14sp</dimen>
     <dimen name="normal_text_size">16sp</dimen>
     <dimen name="big_text_size">24sp</dimen>
 </resources>

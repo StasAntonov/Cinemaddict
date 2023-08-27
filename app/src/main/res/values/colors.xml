@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    general-->
     <color name="background">#15141F</color>
+    <color name="divider">#515151</color>
 
     <!--    text-->
     <color name="primary_text">#FFFFFF</color>
     <color name="secondary_text">#BCBCBC</color>
     <color name="hint">#BBBBBB</color>
+    <color name="variant_text">#E2E2E2</color>
     <color name="format_text">#E0E0E0</color>
 
     <!--    gradient-->
