@@ -1,13 +1,9 @@
 package com.example.cinemaddict
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.example.cinemaddict.databinding.ActivityMainBinding
+import com.example.cinemaddict.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 }

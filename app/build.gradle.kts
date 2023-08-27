@@ -5,6 +5,8 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-android")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -19,6 +21,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //TODO add base url
+        buildConfigField("String", "BASE_URL", "\"https://google.com\"")
     }
 
     buildTypes {
@@ -36,6 +41,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+    buildFeatures {
+        dataBinding = true
+        buildConfig = true
     }
 }
 
