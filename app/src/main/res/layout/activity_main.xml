@@ -10,13 +10,14 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_container_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:defaultNavHost="true"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/main_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_navigation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
