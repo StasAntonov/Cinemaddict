@@ -2,10 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home"
         android:name="com.example.cinemaddict.ui.home.HomeFragment"
         android:label="HomeFragment" />
+
+    <fragment
+        android:id="@+id/discover"
+        android:name="com.example.cinemaddict.ui.discover.DiscoverFragment"
+        android:label="DiscoverFragment" />
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.cinemaddict.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
