@@ -38,7 +38,7 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
             setRefreshViewParams(
                 ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    resources.getDimensionPixelSize(R.dimen.pull_to_refresh_height).dp
+                    resources.getDimensionPixelSize(R.dimen.pull_to_refresh_height)
                 )
             )
         }
