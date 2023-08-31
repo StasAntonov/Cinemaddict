@@ -32,7 +32,7 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         pullToRefresh?.apply {
             isEnabled = false
             setLottieAnimation("refresh_animation.json")
-            setRefreshStyle(SSPullToRefreshLayout.RefreshStyle.NORMAL)
+            setRefreshStyle(SSPullToRefreshLayout.RefreshStyle.FLOAT)
             setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
             setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
             setRefreshViewParams(
