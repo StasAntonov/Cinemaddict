@@ -31,6 +31,7 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         super.onCreate(savedInstanceState)
 
         pullToRefresh?.apply {
+            isEnabled = false
             setLottieAnimation("refresh_animation.json")
             setRefreshStyle(SSPullToRefreshLayout.RefreshStyle.NORMAL)
             setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
@@ -52,11 +53,12 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         progress?.hideProgress() ?: progressViewError()
     }
 
-    override fun setOnRefreshListener(listener: PullToRefreshCallback) {
+    override fun setOnRefreshListener(listener: PullToRefreshCallback?) {
         pullToRefresh?.let {
+            it.isEnabled = listener != null
             it.setOnRefreshListener {
                 lifecycleScope.launch {
-                    listener.invoke()
+                    listener?.invoke()
                     it.setRefreshing(false)
                 }
             }

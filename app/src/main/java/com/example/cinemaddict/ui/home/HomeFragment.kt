@@ -17,11 +17,11 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
             delay(5000) // todo some operation
             hideLoader() // todo need to hide progress
         }
-    }
 
-    // todo put in this function some refresh logic
-    override suspend fun onRefresh() {
-        delay(5000)
-        toast("Finish")
+        // todo example how to implement refresh
+        onRefresh {
+            delay(5000)
+            toast("Finish")
+        }
     }
 }
