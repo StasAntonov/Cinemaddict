@@ -96,4 +96,6 @@ dependencies {
     // Lottie
     implementation("com.airbnb.android:lottie:6.0.0")
 
+    // SSPullToRefresh
+    implementation("com.github.SimformSolutionsPvtLtd:SSPullToRefresh:1.5.1")
 }
