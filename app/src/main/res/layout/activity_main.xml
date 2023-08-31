@@ -27,12 +27,10 @@
                 app:navGraph="@navigation/main_navigation" />
         </com.simform.refresh.SSPullToRefreshLayout>
 
-
         <com.example.cinemaddict.component.ProgressView
             android:id="@+id/progress"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/pull_to_refresh"
             app:layout_constraintEnd_toEndOf="@+id/pull_to_refresh"
             app:layout_constraintStart_toStartOf="@+id/pull_to_refresh"

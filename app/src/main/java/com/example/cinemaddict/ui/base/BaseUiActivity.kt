@@ -2,12 +2,14 @@ package com.example.cinemaddict.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
 import com.example.cinemaddict.R
 import com.example.cinemaddict.common.PullToRefreshCallback
 import com.example.cinemaddict.common.PullToRefreshListener
 import com.example.cinemaddict.component.ProgressView
+import com.example.cinemaddict.ext.dp
 import com.simform.refresh.SSPullToRefreshLayout
 import kotlinx.coroutines.launch
 
@@ -33,6 +35,12 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
             setRefreshStyle(SSPullToRefreshLayout.RefreshStyle.NORMAL)
             setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
             setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
+            setRefreshViewParams(
+                ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    resources.getDimensionPixelSize(R.dimen.pull_to_refresh_height).dp
+                )
+            )
         }
     }
 

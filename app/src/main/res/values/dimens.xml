@@ -28,4 +28,6 @@
     <!--    specific size-->
     <dimen name="bottom_navigation_view_icon_size">44dp</dimen>
     <dimen name="bottom_navigation_view_min_height">70dp</dimen>
+
+    <dimen name="pull_to_refresh_height">200dp</dimen>
 </resources>

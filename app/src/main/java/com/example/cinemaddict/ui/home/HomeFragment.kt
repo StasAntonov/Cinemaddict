@@ -21,7 +21,7 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
 
     // todo put in this function some refresh logic
     override suspend fun onRefresh() {
-        delay(3000)
+        delay(5000)
         toast("Finish")
     }
 }
