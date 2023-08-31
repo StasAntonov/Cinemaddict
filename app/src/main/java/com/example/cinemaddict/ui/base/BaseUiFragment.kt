@@ -9,4 +9,9 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
 ) : BaseFragment<T>(bindingInflater) {
 
     protected val progress: ProgressView.Listener by lazy { activity as ProgressView.Listener }
+
+    override fun onStop() {
+        super.onStop()
+        progress.hideLoader()
+    }
 }
