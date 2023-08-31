@@ -1,8 +1,8 @@
 package com.example.cinemaddict.ui.base
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
 import com.example.cinemaddict.R
@@ -27,9 +27,8 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         binding.root.findViewById(R.id.pull_to_refresh)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    @CallSuper
+    override fun initViews() {
         pullToRefresh?.apply {
             isEnabled = false
             setLottieAnimation("refresh_animation.json")
