@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
         android:name="com.example.cinemaddict.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/discover"
         android:name="com.example.cinemaddict.ui.discover.DiscoverFragment"
-        android:label="DiscoverFragment" />
+        tools:layout="@layout/fragment_discover" />
 
     <fragment
         android:id="@+id/profile"
         android:name="com.example.cinemaddict.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

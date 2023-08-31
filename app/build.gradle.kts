@@ -93,4 +93,7 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie:6.0.0")
+
 }

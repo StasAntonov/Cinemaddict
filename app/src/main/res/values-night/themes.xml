@@ -2,6 +2,5 @@
     <style name="Theme.Cinemaddict" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/background</item>
         <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:background">@color/background</item>
     </style>
 </resources>
