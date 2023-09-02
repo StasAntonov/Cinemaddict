@@ -15,4 +15,9 @@
     <!--    gradient-->
     <color name="gradient_start_color">#EF2D1A</color>
     <color name="gradient_end_color">#FF8F71</color>
+
+    <!--    info bar-->
+    <color name="ib_default">#696969</color>
+    <color name="ib_error">#C81B0A</color>
+    <color name="ib_success">#35A921</color>
 </resources>

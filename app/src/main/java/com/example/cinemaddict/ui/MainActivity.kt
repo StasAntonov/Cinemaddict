@@ -5,7 +5,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ActivityMainBinding
-import com.example.cinemaddict.ext.toast
 import com.example.cinemaddict.ui.base.BaseUiActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,9 +26,12 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     override fun initObservers() {
         viewModel.isNetworkAvailable.observe(this) {
             if (it) {
-                toast("Connect")
+                showSuccessMessage(
+                    resources.getString(R.string.internet_connection_restored),
+                    false
+                )
             } else {
-                toast("No internet")
+                showErrorMessage(resources.getString(R.string.internet_no_connection), true)
             }
         }
     }

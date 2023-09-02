@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewData"
+            type="com.example.cinemaddict.component.infobar.InfoViewData" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/normal_padding"
+        android:paddingVertical="@dimen/extra_small_padding"
+        android:visibility="gone"
+        app:backgroundResColor="@{viewData.background}"
+        tools:background="@color/ib_default"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.SubTitle.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{viewData.text}"
+            tools:text="Text" />
+
+    </FrameLayout>
+</layout>
