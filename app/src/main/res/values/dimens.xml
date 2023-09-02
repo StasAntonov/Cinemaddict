@@ -25,6 +25,16 @@
     <dimen name="normal_text_size">16sp</dimen>
     <dimen name="big_text_size">24sp</dimen>
 
+    <!--    letter spacing-->
+    <dimen name="small_ls">0.01</dimen>
+    <dimen name="normal_ls">0.02</dimen>
+
+    <!--    letter spacing extra-->
+    <dimen name="extra_small_lse">2sp</dimen>
+    <dimen name="small_lse">4sp</dimen>
+    <dimen name="normal_lse">6sp</dimen>
+    <dimen name="big_lse">12sp</dimen>
+
     <!--    specific size-->
     <dimen name="bottom_navigation_view_icon_size">44dp</dimen>
     <dimen name="bottom_navigation_view_min_height">70dp</dimen>

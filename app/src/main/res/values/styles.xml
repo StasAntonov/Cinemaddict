@@ -4,7 +4,7 @@
     <style name="Text">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:fontFamily">@font/lato_400</item>
-        <item name="android:letterSpacing">0.02</item>
+        <item name="android:letterSpacing">@dimen/normal_ls</item>
     </style>
 
     <style name="Text.Header">
@@ -16,7 +16,7 @@
     </style>
 
     <style name="Text.Header.Medium.Wide">
-        <item name="android:lineSpacingExtra">12sp</item>
+        <item name="android:lineSpacingExtra">@dimen/big_lse</item>
     </style>
 
     <style name="Text.Title">
@@ -39,14 +39,14 @@
         <item name="android:fontFamily">@font/inter_500</item>
         <item name="android:textSize">@dimen/hint_size</item>
         <item name="android:textColor">@color/hint</item>
-        <item name="android:letterSpacing">0.01</item>
-        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:letterSpacing">@dimen/small_ls</item>
+        <item name="android:lineSpacingExtra">@dimen/extra_small_lse</item>
     </style>
 
     <style name="Text.Highlight">
         <item name="android:fontFamily">@font/lato_500</item>
         <item name="android:textSize">@dimen/text_size</item>
-        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:lineSpacingExtra">@dimen/small_lse</item>
     </style>
 
     <style name="Text.SubTitle">
@@ -63,7 +63,7 @@
     </style>
 
     <style name="Text.SubTitle.Desc">
-        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_lse</item>
     </style>
 
     <style name="Text.Label">
