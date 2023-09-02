@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Singleton
 class NetworkConnectionImpl @Inject constructor(
     @ApplicationContext context: Context
-) : LiveNetworkConnection, NetworkConnection {
+) : NetworkConnection, LiveNetworkConnection {
 
     private val connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -37,16 +37,28 @@ class NetworkConnectionImpl @Inject constructor(
         }
     }
 
-    init {
-        connectivityManager.requestNetwork(networkRequest, networkCallback)
-    }
-
     private val _isNetworkAvailable = MutableLiveData<Boolean>()
     override val isNetworkAvailable: LiveData<Boolean> = _isNetworkAvailable
 
-    override var isConnected: Boolean = false
+    override var isConnected: Boolean = true
         private set(value) {
             _isNetworkAvailable.postValue(value)
             field = value
         }
+
+    init {
+        connectivityManager.requestNetwork(networkRequest, networkCallback)
+        initialNetworkCheck()
+    }
+
+    private fun initialNetworkCheck() {
+        val network = connectivityManager.activeNetwork
+        val capabilities = connectivityManager.getNetworkCapabilities(network)
+        val isNetworkConnected = capabilities?.let {
+            it.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+        } ?: false
+
+        isConnected = isNetworkConnected
+    }
 }
