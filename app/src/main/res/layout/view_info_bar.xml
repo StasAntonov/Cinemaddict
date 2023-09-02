@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewData"
-            type="com.example.cinemaddict.component.infobar.InfoViewData" />
-    </data>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingHorizontal="@dimen/normal_padding"
-        app:backgroundResColor="@{viewData.background}"
         tools:background="@color/ib_default"
         tools:layout_height="@dimen/view_info_height">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text"
             style="@style/Text.SubTitle.White"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@{viewData.text}"
             tools:text="Text" />
 
     </FrameLayout>

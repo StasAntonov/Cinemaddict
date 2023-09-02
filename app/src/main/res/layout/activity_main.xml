@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@+id/info_bar"
             app:menu="@menu/main_menu" />
 
-        <com.example.cinemaddict.component.infobar.InfoBarView
+        <com.example.cinemaddict.component.InfoBarView
             android:id="@+id/info_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

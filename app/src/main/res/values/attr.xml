@@ -8,6 +8,7 @@
     <declare-styleable name="InfoBarView">
         <attr name="minViewHeight" format="reference" />
         <attr name="heightChangingDuration" format="integer" />
-        <attr name="animationDelay" format="integer" />
+        <attr name="heightAnimationDelay" format="integer" />
+        <attr name="colorAnimationDelay" format="integer" />
     </declare-styleable>
 </resources>
