@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
 
     override fun initViews() = with(binding) {
         val navHostFragment =
