@@ -9,7 +9,6 @@ import com.example.cinemaddict.R
 import com.example.cinemaddict.common.PullToRefreshCallback
 import com.example.cinemaddict.common.PullToRefreshListener
 import com.example.cinemaddict.component.ProgressView
-import com.example.cinemaddict.ext.dp
 import com.simform.refresh.SSPullToRefreshLayout
 import kotlinx.coroutines.launch
 
