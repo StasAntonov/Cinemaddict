@@ -34,13 +34,13 @@ class InfoBarView @JvmOverloads constructor(
 
     init {
         context.obtainStyledAttributes(attributeSet, R.styleable.InfoBarView, defAttr, 0).let {
-            minViewHeight = it.getResourceId(R.styleable.InfoBarView_min_view_height, minViewHeight)
+            minViewHeight = it.getResourceId(R.styleable.InfoBarView_minViewHeight, minViewHeight)
             heightChangingDuration = it.getInt(
-                R.styleable.InfoBarView_height_changing_duration,
+                R.styleable.InfoBarView_heightChangingDuration,
                 heightChangingDuration.toInt()
             ).toLong()
             animationDelay =
-                it.getInt(R.styleable.InfoBarView_min_view_height, animationDelay.toInt()).toLong()
+                it.getInt(R.styleable.InfoBarView_animationDelay, animationDelay.toInt()).toLong()
 
             toUpAnimator = ValueAnimator.ofInt(minViewHeight, viewHeight).apply {
                 duration = heightChangingDuration
