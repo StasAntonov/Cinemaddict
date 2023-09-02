@@ -12,6 +12,7 @@ import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ViewInfoBarBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -30,6 +31,9 @@ class InfoBarView @JvmOverloads constructor(
 
     private val binding: ViewInfoBarBinding =
         ViewInfoBarBinding.inflate(LayoutInflater.from(context), this, true)
+
+    private val mainScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
+    private var animationJob: Job? = null
 
     private var state: UiState = UiState.NONE
 
@@ -106,7 +110,8 @@ class InfoBarView @JvmOverloads constructor(
         newState: UiState,
         isShowAlways: Boolean = true
     ) = with(binding) {
-        CoroutineScope(Dispatchers.Main).launch {
+        animationJob?.cancel()
+        animationJob = mainScope.launch {
             if (state == UiState.NONE) {
                 container.setBackgroundColor(ContextCompat.getColor(context, newState.color))
                 tvText.text = message
