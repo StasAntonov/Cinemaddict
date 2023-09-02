@@ -4,4 +4,10 @@
         <attr name="startColor" format="reference" />
         <attr name="endColor" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="InfoBarView">
+        <attr name="min_view_height" format="reference" />
+        <attr name="height_changing_duration" format="integer" />
+        <attr name="animation_delay" format="integer" />
+    </declare-styleable>
 </resources>

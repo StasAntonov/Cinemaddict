@@ -22,23 +22,41 @@ class InfoBarView @JvmOverloads constructor(
     private val binding: ViewInfoBarBinding =
         ViewInfoBarBinding.inflate(LayoutInflater.from(context), this, true)
 
+    private var toUpAnimator: ValueAnimator
+
+    private var toDownAnimator: ValueAnimator
+
     private val viewHeight: Int = resources.getDimensionPixelSize(R.dimen.view_info_height)
 
-    private val toUpAnimator: ValueAnimator by lazy {
-        ValueAnimator.ofInt(MIN_VIEW_HEIGHT, viewHeight).apply {
-            duration = HEIGHT_CHANGING_DURATION
-            addUpdateListener { value ->
-                updateViewHeight(value.animatedValue as Int)
-            }
-        }
-    }
+    private var minViewHeight: Int = resources.getDimensionPixelSize(R.dimen.view_info_min_height)
+    private var heightChangingDuration = HEIGHT_CHANGING_DURATION
+    private var animationDelay = ANIMATION_DELAY
 
-    private val toDownAnimator: ValueAnimator by lazy {
-        ValueAnimator.ofInt(viewHeight, MIN_VIEW_HEIGHT).apply {
-            duration = HEIGHT_CHANGING_DURATION
-            addUpdateListener { value ->
-                updateViewHeight(value.animatedValue as Int)
+    init {
+        context.obtainStyledAttributes(attributeSet, R.styleable.InfoBarView, defAttr, 0).let {
+            minViewHeight = it.getResourceId(R.styleable.InfoBarView_min_view_height, minViewHeight)
+            heightChangingDuration = it.getInt(
+                R.styleable.InfoBarView_height_changing_duration,
+                heightChangingDuration.toInt()
+            ).toLong()
+            animationDelay =
+                it.getInt(R.styleable.InfoBarView_min_view_height, animationDelay.toInt()).toLong()
+
+            toUpAnimator = ValueAnimator.ofInt(minViewHeight, viewHeight).apply {
+                duration = heightChangingDuration
+                addUpdateListener { value ->
+                    updateViewHeight(value.animatedValue as Int)
+                }
             }
+
+            toDownAnimator = ValueAnimator.ofInt(viewHeight, minViewHeight).apply {
+                duration = heightChangingDuration
+                addUpdateListener { value ->
+                    updateViewHeight(value.animatedValue as Int)
+                }
+            }
+
+            it.recycle()
         }
     }
 
@@ -67,12 +85,12 @@ class InfoBarView @JvmOverloads constructor(
                 viewData = it
             }
 
-            if (container.height == MIN_VIEW_HEIGHT) {
+            if (container.height == minViewHeight) {
                 toUpAnimator.start()
             }
 
             if (isShowAlways) return@launch
-            delay(ANIMATION_DELAY)
+            delay(animationDelay)
 
             toDownAnimator.start()
         }
@@ -84,7 +102,6 @@ class InfoBarView @JvmOverloads constructor(
     }
 
     private companion object {
-        const val MIN_VIEW_HEIGHT = 0
         const val HEIGHT_CHANGING_DURATION = 300L
         const val ANIMATION_DELAY = 4000L
     }

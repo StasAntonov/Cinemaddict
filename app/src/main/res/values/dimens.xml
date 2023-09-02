@@ -43,4 +43,5 @@
     <dimen name="pull_to_refresh_height">100dp</dimen>
 
     <dimen name="view_info_height">20dp</dimen>
+    <dimen name="view_info_min_height">0dp</dimen>
 </resources>
