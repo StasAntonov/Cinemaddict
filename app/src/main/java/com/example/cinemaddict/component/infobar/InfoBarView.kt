@@ -1,11 +1,9 @@
 package com.example.cinemaddict.component.infobar
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import com.example.cinemaddict.R
@@ -24,17 +22,24 @@ class InfoBarView @JvmOverloads constructor(
     private val binding: ViewInfoBarBinding =
         ViewInfoBarBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val toTopAnimation = AnimationUtils.loadAnimation(context, R.anim.info_bar_top)
-    private val toDownAnimation = AnimationUtils.loadAnimation(context, R.anim.info_bar_down)
+    private val viewHeight: Int = resources.getDimensionPixelSize(R.dimen.view_info_height)
 
-    init {
-        toDownAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(p0: Animation?) = Unit
-            override fun onAnimationRepeat(p0: Animation?) = Unit
-            override fun onAnimationEnd(p0: Animation?) {
-                binding.container.visibility = View.GONE
+    private val toUpAnimator: ValueAnimator by lazy {
+        ValueAnimator.ofInt(MIN_VIEW_HEIGHT, viewHeight).apply {
+            duration = HEIGHT_CHANGING_DURATION
+            addUpdateListener { value ->
+                updateViewHeight(value.animatedValue as Int)
             }
-        })
+        }
+    }
+
+    private val toDownAnimator: ValueAnimator by lazy {
+        ValueAnimator.ofInt(viewHeight, MIN_VIEW_HEIGHT).apply {
+            duration = HEIGHT_CHANGING_DURATION
+            addUpdateListener { value ->
+                updateViewHeight(value.animatedValue as Int)
+            }
+        }
     }
 
     fun showDefaultMessage(message: String, isShowAlways: Boolean = false) {
@@ -62,18 +67,26 @@ class InfoBarView @JvmOverloads constructor(
                 viewData = it
             }
 
-            container.visibility = View.VISIBLE
-            container.startAnimation(toTopAnimation)
+            if (container.height == MIN_VIEW_HEIGHT) {
+                toUpAnimator.start()
+            }
 
             if (isShowAlways) return@launch
             delay(ANIMATION_DELAY)
 
-            container.startAnimation(toDownAnimation)
+            toDownAnimator.start()
         }
     }
 
+    private fun updateViewHeight(height: Int) = with(binding) {
+        container.layoutParams.height = height
+        container.requestLayout()
+    }
+
     private companion object {
-        const val ANIMATION_DELAY = 6000L
+        const val MIN_VIEW_HEIGHT = 0
+        const val HEIGHT_CHANGING_DURATION = 300L
+        const val ANIMATION_DELAY = 4000L
     }
 
     interface Listener {
