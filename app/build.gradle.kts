@@ -93,4 +93,9 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie:6.0.0")
+
+    // SSPullToRefresh
+    implementation("com.github.SimformSolutionsPvtLtd:SSPullToRefresh:1.5.1")
 }

@@ -15,5 +15,13 @@ abstract class BaseActivity<T : ViewDataBinding>(
         super.onCreate(savedInstanceState)
         binding = bindingInflater(layoutInflater)
         setContentView(binding.root)
+
+        initViews()
+        initObservers()
+        iniListeners()
     }
+
+    open fun initViews() {}
+    open fun iniListeners() {}
+    open fun initObservers() {}
 }
