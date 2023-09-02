@@ -13,6 +13,8 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
 
     private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
 
+    private var isLaunchApp: Boolean = true
+
     override fun initViews() = with(binding) {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_container_main) as NavHostFragment
@@ -25,13 +27,14 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
 
     override fun initObservers() {
         viewModel.isNetworkAvailable.observe(this) {
-            if (it) {
+            if (it && !isLaunchApp) {
                 showSuccessMessage(
                     resources.getString(R.string.internet_connection_restored),
                     false
                 )
-            } else {
+            } else if (!it) {
                 showErrorMessage(resources.getString(R.string.internet_no_connection), true)
+                isLaunchApp = false
             }
         }
     }
