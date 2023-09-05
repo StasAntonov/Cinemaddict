@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("kotlin-kapt")
     id("kotlin-android")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
@@ -61,9 +62,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.5.2")
     implementation("androidx.room:room-ktx:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
-
-    // SwipeRefresh
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

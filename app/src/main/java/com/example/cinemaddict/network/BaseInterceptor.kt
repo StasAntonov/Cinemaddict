@@ -1,4 +1,4 @@
-package com.example.cinemaddict.di
+package com.example.cinemaddict.network
 
 import okhttp3.Authenticator
 import okhttp3.Interceptor
