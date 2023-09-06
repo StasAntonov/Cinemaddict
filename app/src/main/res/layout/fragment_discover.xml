@@ -9,10 +9,20 @@
         android:background="@color/background"
         tools:context=".ui.discover.DiscoverFragment">
 
-        <include
-            layout="@layout/view_search"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_view_height"
+            android:drawableStart="@drawable/ic_search"
+            android:padding="@dimen/small_padding"
+            android:drawablePadding="@dimen/search_view_padding"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textAppearance="@style/Text.Hint"
+            android:hint="@string/search"
+            android:textColor="@color/hint"
+            android:textColorHint="@color/divider"
+            android:background="@drawable/bg_search_view"
+            android:inputType="textNoSuggestions"
             android:layout_marginStart="@dimen/xx_big_margin"
             android:layout_marginTop="@dimen/x_big_margin"
             android:layout_marginEnd="@dimen/xx_big_margin"
