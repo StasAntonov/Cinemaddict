@@ -43,6 +43,17 @@
         <item name="android:lineSpacingExtra">@dimen/extra_small_lse</item>
     </style>
 
+    <style name="SearchEditText">
+        <item name="android:textColorHint">@color/divider</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="android:drawableStart">@drawable/ic_search</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:drawablePadding">@dimen/search_view_padding</item>
+        <item name="android:textAppearance">@style/Text.Hint</item>
+        <item name="android:background">@drawable/bg_search_view</item>
+    </style>
+
     <style name="Text.Highlight">
         <item name="android:fontFamily">@font/lato_500</item>
         <item name="android:textSize">@dimen/text_size</item>
