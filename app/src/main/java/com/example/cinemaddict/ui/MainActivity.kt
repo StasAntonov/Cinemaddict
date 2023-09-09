@@ -1,9 +1,9 @@
 package com.example.cinemaddict.ui
 
-import androidx.activity.viewModels
 import android.os.Build
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ActivityMainBinding
@@ -58,9 +58,10 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
 
         binding.bnvNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> itemSelectNavigation(it.itemId)
-                R.id.discover -> itemSelectNavigation(it.itemId)
+                R.id.home,
+                R.id.discover,
                 R.id.profile -> itemSelectNavigation(it.itemId)
+
                 else -> {
                     false
                 }
@@ -71,6 +72,7 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     private fun itemSelectNavigation(fragment: Int): Boolean {
         navHostFragment.navController.let {
             return if (it.currentDestination?.id != fragment) {
+                it.popBackStack(fragment, true)
                 it.navigate(fragment)
                 true
             } else {
