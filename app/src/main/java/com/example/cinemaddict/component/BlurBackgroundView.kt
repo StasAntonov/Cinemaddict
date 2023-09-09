@@ -108,18 +108,11 @@ class BlurBackgroundView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         backgroundImage?.let {
-            canvas?.let { c ->
-                c.drawBitmap(it, 0f, 0f, null)
-                createColorBackground(canvas)
-            }
-        }
-
-        canvas?.apply {
-            drawRoundRect(roundedRect, radiusCornerLine, radiusCornerLine, createGradientLine())
+            canvas?.drawBitmap(it, 0f, 0f, null)
         }
     }
 
-    fun updateBackgroundFromView() {
+    private fun updateBackgroundFromView() {
         val location = IntArray(2)
         getLocationOnScreen(location)
         val viewX = location[0]
@@ -134,31 +127,12 @@ class BlurBackgroundView @JvmOverloads constructor(
 
         val croppedBitmap = Bitmap.createBitmap(screenshot, viewX, viewY, width, height)
 
-        backgroundImage = applyBlur(croppedBitmap)
+        backgroundImage = if (blur > 0) {
+            applyBlur(croppedBitmap)
+        } else {
+            croppedBitmap
+        }
         backgroundImage = createRoundedBitmap(backgroundImage)
-    }
-
-
-//    fun updateBackgroundFromView() {
-//        val location = IntArray(2)
-//        getLocationOnScreen(location)
-//        val viewX = location[0]
-//        val viewY = location[1]
-//        val screenshot = Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
-//        val canvas = Canvas(screenshot)
-//        rootView.draw(canvas)
-//
-//        val croppedBitmap = Bitmap.createBitmap(screenshot, viewX, viewY, width, height)
-//        backgroundImage = applyBlur(croppedBitmap)
-//
-//        createColorBackground(canvas)
-//
-//        invalidate()
-//    }
-
-    private fun createColorBackground(canvas: Canvas) {
-        overlayPaint.color = ContextCompat.getColor(context, overlayColor)
-        canvas.drawRoundRect(viewShape, radius, radius, overlayPaint)
     }
 
     private fun getGradientAngle(): LinearGradient {
@@ -212,6 +186,11 @@ class BlurBackgroundView @JvmOverloads constructor(
 
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(sourceBitmap, 0f, 0f, paint)
+
+        overlayPaint.color = ContextCompat.getColor(context, overlayColor)
+        canvas.drawRoundRect(viewShape, radius, radius, overlayPaint)
+
+        canvas.drawRoundRect(roundedRect, radiusCornerLine, radiusCornerLine, createGradientLine())
 
         return output
     }

@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_test_back"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/textView"
-            style="@style/Text.Header"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.example.cinemaddict.component.BlurBackgroundView
-            android:id="@+id/blurBackgroundView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="@dimen/big_margin"
-            app:angleGradient="70"
-            app:backgroundColorOverlay="@color/blur_background"
-            app:blur="50"
-            app:cornerRadiusView="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:startColorGradient="@color/border_gradient_start_color"
-            app:strokeWidth="6dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Spider Man"
-            android:textColor="@color/primary_text"
-            android:textSize="39dp"
-            app:layout_constraintBottom_toBottomOf="@+id/blurBackgroundView"
-            app:layout_constraintEnd_toEndOf="@+id/blurBackgroundView"
-            app:layout_constraintStart_toStartOf="@+id/blurBackgroundView"
-            app:layout_constraintTop_toTopOf="@+id/blurBackgroundView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
