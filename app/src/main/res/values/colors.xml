@@ -8,7 +8,6 @@
     <!--    text-->
     <color name="primary_text">#FFFFFF</color>
     <color name="secondary_text">#BCBCBC</color>
-    <color name="hint">#BBBBBB</color>
     <color name="variant_text">#E2E2E2</color>
     <color name="format_text">#E0E0E0</color>
 
@@ -20,4 +19,9 @@
     <color name="ib_default">#696969</color>
     <color name="ib_error">#C81B0A</color>
     <color name="ib_success">#35A921</color>
+
+    <!--    search view-->
+    <color name="cursor_color">#FF8F71</color>
+    <color name="search_view_background">#211F30</color>
+    <color name="hint">#BBBBBB</color>
 </resources>
