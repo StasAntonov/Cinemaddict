@@ -96,4 +96,7 @@ dependencies {
 
     // SSPullToRefresh
     implementation("com.github.SimformSolutionsPvtLtd:SSPullToRefresh:1.5.1")
+
+    //Blur
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
 }

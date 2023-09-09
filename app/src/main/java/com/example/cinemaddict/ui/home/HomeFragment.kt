@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-
     override fun initViews() {
         lifecycleScope.launch {
             showLoader() // todo need to show progress
