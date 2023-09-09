@@ -2,6 +2,7 @@ package com.example.cinemaddict.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 
@@ -21,7 +22,12 @@ abstract class BaseActivity<T : ViewDataBinding>(
         iniListeners()
     }
 
+    @CallSuper
     open fun initViews() {}
+
+    @CallSuper
     open fun iniListeners() {}
+
+    @CallSuper
     open fun initObservers() {}
 }

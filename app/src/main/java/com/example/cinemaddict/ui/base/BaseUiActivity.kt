@@ -32,8 +32,8 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         binding.root.findViewById(R.id.info_bar)
     }
 
-    @CallSuper
     override fun initViews() {
+        super.initViews()
         pullToRefresh?.apply {
             isEnabled = false
             setLottieAnimation("refresh_animation.json")

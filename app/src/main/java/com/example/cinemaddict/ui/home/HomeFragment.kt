@@ -11,11 +11,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     override fun initViews() {
-        lifecycleScope.launch {
-            showLoader() // todo need to show progress
-            delay(5000) // todo some operation
-            hideLoader() // todo need to hide progress
-        }
+        super.initViews()
+//        lifecycleScope.launch {
+//            showLoader() // todo need to show progress
+//            delay(5000) // todo some operation
+//            hideLoader() // todo need to hide progress
+//        }
 
         // todo example how to implement refresh
         onRefresh {

@@ -28,6 +28,7 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     }
 
     override fun initObservers() {
+        super.initObservers()
         viewModel.isNetworkAvailable.observe(this) {
             if (it && !isLaunchApp) {
                 showSuccessMessage(
@@ -42,6 +43,7 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     }
 
     override fun iniListeners() {
+        super.iniListeners()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             onBackInvokedDispatcher.registerOnBackInvokedCallback(
                 OnBackInvokedDispatcher.PRIORITY_DEFAULT
