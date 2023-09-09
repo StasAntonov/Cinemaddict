@@ -4,7 +4,7 @@
     <style name="Text">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:fontFamily">@font/lato_400</item>
-        <item name="android:letterSpacing">0.02</item>
+        <item name="android:letterSpacing">@dimen/normal_ls</item>
     </style>
 
     <style name="Text.Header">
@@ -16,7 +16,7 @@
     </style>
 
     <style name="Text.Header.Medium.Wide">
-        <item name="android:lineSpacingExtra">12sp</item>
+        <item name="android:lineSpacingExtra">@dimen/big_lse</item>
     </style>
 
     <style name="Text.Title">
@@ -35,18 +35,29 @@
         <item name="android:textColor">@color/secondary_text</item>
     </style>
 
-    <style name="Text.Hint">
+    <style name="Text.Search">
         <item name="android:fontFamily">@font/inter_500</item>
         <item name="android:textSize">@dimen/hint_size</item>
-        <item name="android:textColor">@color/hint</item>
-        <item name="android:letterSpacing">0.01</item>
-        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:letterSpacing">@dimen/small_ls</item>
+        <item name="android:lineSpacingExtra">@dimen/extra_small_lse</item>
+    </style>
+
+    <style name="SearchEditText">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="android:drawableStart">@drawable/ic_search</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:drawablePadding">@dimen/search_view_padding</item>
+        <item name="android:textAppearance">@style/Text.Search</item>
+        <item name="android:background">@drawable/bg_search_view</item>
     </style>
 
     <style name="Text.Highlight">
         <item name="android:fontFamily">@font/lato_500</item>
         <item name="android:textSize">@dimen/text_size</item>
-        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:lineSpacingExtra">@dimen/small_lse</item>
     </style>
 
     <style name="Text.SubTitle">
@@ -63,7 +74,7 @@
     </style>
 
     <style name="Text.SubTitle.Desc">
-        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:lineSpacingExtra">@dimen/normal_lse</item>
     </style>
 
     <style name="Text.Label">

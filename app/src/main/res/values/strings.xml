@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cinemaddict</string>
+
+    <string name="internet_no_connection">No connection</string>
+    <string name="internet_connection_restored">Connection restored</string>
+    <string name="search">Search...</string>
 </resources>
