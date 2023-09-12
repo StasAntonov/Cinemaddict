@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    margin-->
+    <dimen name="tiny_margin">6dp</dimen>
     <dimen name="extra_small_margin">8dp</dimen>
     <dimen name="small_margin">12dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
     <dimen name="big_margin">18dp</dimen>
     <dimen name="x_big_margin">20dp</dimen>
     <dimen name="xx_big_margin">24dp</dimen>
+    <dimen name="pre_xxx_big_margin">28dp</dimen>
+    <dimen name="xxx_big_margin">36dp</dimen>
+    <dimen name="large_margin">44dp</dimen>
 
     <!--    padding-->
     <dimen name="tiny_padding">7dp</dimen>
@@ -35,9 +39,15 @@
     <dimen name="normal_lse">6sp</dimen>
     <dimen name="big_lse">12sp</dimen>
 
+    <!--    view radius-->
+    <dimen name="search_view_corner">20dp</dimen>
+    <dimen name="big_image_radius">30dp</dimen>
+    <dimen name="small_image_radius">20dp</dimen>
+
     <!--    specific size-->
     <dimen name="bottom_navigation_view_icon_size">44dp</dimen>
     <dimen name="bottom_navigation_view_min_height">70dp</dimen>
+    <dimen name="recycler_margin">15dp</dimen>
     <dimen name="search_view_height">48dp</dimen>
     <dimen name="search_view_padding">16dp</dimen>
     <dimen name="cursor_width">2dp</dimen>
@@ -51,6 +61,6 @@
     <dimen name="view_info_height">20dp</dimen>
     <dimen name="view_info_min_height">0dp</dimen>
 
-    <!--    view radius-->
-    <dimen name="search_view_corner">20dp</dimen>
+    <dimen name="item_latest_image_height">191dp</dimen>
+    <dimen name="item_latest_info_height">62dp</dimen>
 </resources>
