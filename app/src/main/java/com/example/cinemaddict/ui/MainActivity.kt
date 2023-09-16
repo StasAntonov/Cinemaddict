@@ -9,6 +9,7 @@ import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ActivityMainBinding
 import com.example.cinemaddict.ui.base.BaseUiActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Stack
 
 @AndroidEntryPoint
 class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -18,6 +19,8 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     private var isLaunchApp: Boolean = true
 
     private lateinit var navHostFragment: NavHostFragment
+
+    private var fragmentBackStack: Stack<Int> = Stack()
 
     override fun initViews() = with(binding) {
         navHostFragment =
@@ -44,10 +47,34 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
 
     override fun iniListeners() {
         super.iniListeners()
+
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == fragmentBackStack.lastOrNull()) {
+                return@addOnDestinationChangedListener
+            }
+            val startDestinationID = navHostFragment.navController.graph.startDestinationId
+            if (!fragmentBackStack.contains(destination.id)) {
+                fragmentBackStack.push(destination.id)
+            } else {
+                if (destination.id == startDestinationID) {
+                    if (fragmentBackStack.count { it == startDestinationID } < 2) {
+                        fragmentBackStack.push(destination.id)
+                    } else {
+                        fragmentBackStack.asReversed().remove(destination.id)
+                        fragmentBackStack.push(destination.id)
+                    }
+                } else {
+                    fragmentBackStack.remove(destination.id)
+                    fragmentBackStack.push(destination.id)
+                    if (fragmentBackStack[0] == fragmentBackStack[1]) {
+                        fragmentBackStack.removeFirst()
+                    }
+                }
+            }
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT
-            ) {
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(OnBackInvokedDispatcher.PRIORITY_DEFAULT) {
                 onBack()
             }
         } else {
@@ -84,13 +111,12 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     }
 
     private fun onBack() {
-        navHostFragment.navController.let {
-            if (it.currentDestination?.id != R.id.home) {
-                it.popBackStack(R.id.home, false)
-                binding.bnvNavigation.menu.findItem(R.id.home).isChecked = true
-            } else {
-                finish()
-            }
+        if (fragmentBackStack.size > 1) {
+            fragmentBackStack.pop()
+            val fragmentId = fragmentBackStack.lastElement()
+            binding.bnvNavigation.selectedItemId = fragmentId
+        } else if (fragmentBackStack.size == 1) {
+            finish()
         }
     }
 }
