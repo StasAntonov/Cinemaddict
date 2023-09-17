@@ -8,15 +8,30 @@
     <fragment
         android:id="@+id/home"
         android:name="com.example.cinemaddict.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/show_details"
+            app:destination="@id/details" />
+    </fragment>
 
     <fragment
         android:id="@+id/discover"
         android:name="com.example.cinemaddict.ui.discover.DiscoverFragment"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover">
+
+        <action
+            android:id="@+id/show_details"
+            app:destination="@id/details" />
+    </fragment>
 
     <fragment
         android:id="@+id/profile"
         android:name="com.example.cinemaddict.ui.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.cinemaddict.ui.details.DetailsFragment"
+        tools:layout="@layout/fragment_details" />
 </navigation>

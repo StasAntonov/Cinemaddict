@@ -100,12 +100,16 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     }
 
     override fun onBackListener() {
-        if (fragmentBackStack.size > 1) {
-            fragmentBackStack.pop()
-            val fragmentId = fragmentBackStack.lastElement()
-            binding.bnvNavigation.selectedItemId = fragmentId
-        } else if (fragmentBackStack.size == 1) {
-            finish()
+        if (fragmentBackStack.contains(navController.currentDestination?.id)) {
+            if (fragmentBackStack.size > 1) {
+                fragmentBackStack.pop()
+                val fragmentId = fragmentBackStack.lastElement()
+                binding.bnvNavigation.selectedItemId = fragmentId
+            } else if (fragmentBackStack.size == 1) {
+                finish()
+            }
+        } else {
+            navController.popBackStack()
         }
     }
 }

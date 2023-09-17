@@ -1,12 +1,10 @@
 package com.example.cinemaddict.ui.home
 
-import androidx.lifecycle.lifecycleScope
 import com.example.cinemaddict.databinding.FragmentHomeBinding
 import com.example.cinemaddict.ext.toast
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -22,6 +20,13 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
         onRefresh {
             delay(5000)
             toast("Finish")
+        }
+    }
+
+    override fun initListeners() {
+        super.initListeners()
+        binding.btnDetails.setOnClickListener {
+            navigate(HomeFragmentDirections.showDetails())
         }
     }
 }
