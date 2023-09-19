@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
             style="@style/Text.Header.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/xxx_big_margin"
             android:layout_marginHorizontal="@dimen/xx_big_margin"
@@ -34,12 +34,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-        <com.google.android.material.tabs.TabLayout
+        <com.example.cinemaddict.component.CustomTabLayout
             android:id="@+id/tl_genre"
+            style="@style/TabStyle"
+            android:clipToPadding="false"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/tab_height"
             android:layout_marginTop="@dimen/xx_big_margin"
-            android:layout_marginStart="@dimen/xx_big_margin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_search" />
 
@@ -47,8 +49,8 @@
             android:id="@+id/vp_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tl_genre" />
+            app:layout_constraintTop_toBottomOf="@id/tl_genre"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
