@@ -32,22 +32,25 @@ class FilmFragment : BaseFragment<FragmentFilmBinding>(FragmentFilmBinding::infl
             "Драма-триллер",
             "Экшн",
             "Ужасы",
-            "Детективы" -> getList(genre)
+            "Детективы" -> test(genre)
 
-            else -> getList(" genre - null !!!")
+            else -> test(" genre - null !!!")
         }
     }
 
     // todo improve
-    private fun getList(genre: String): List<Film> {
-        return listOf(
-            Film("$genre 1", R.drawable.img),
-            Film("$genre 2", R.drawable.marv_1),
-            Film("$genre 4", R.drawable.marv_1),
-            Film("$genre 3", R.drawable.img),
-            Film("$genre 5", R.drawable.img),
-            Film("$genre 5", R.drawable.marv_1)
+    private fun test(genre: String): List<Film> {
+        val pair = mapOf(
+            1 to R.drawable.marv_1,
+            2 to R.drawable.img,
+            3 to R.drawable.marv_1,
+            0 to R.drawable.img
         )
+        return buildList {
+            (1..20).forEach {
+                add(Film("$genre $it", pair.getOrDefault(it % 4, R.drawable.marv_1)))
+            }
+        }
     }
 
     companion object {
