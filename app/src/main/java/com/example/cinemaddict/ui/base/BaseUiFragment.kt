@@ -2,6 +2,7 @@ package com.example.cinemaddict.ui.base
 
 import android.view.LayoutInflater
 import androidx.databinding.ViewDataBinding
+import com.example.cinemaddict.common.BottomNavigationViewListener
 import com.example.cinemaddict.common.PullToRefreshCallback
 import com.example.cinemaddict.common.PullToRefreshListener
 import com.example.cinemaddict.component.InfoBarView
@@ -14,6 +15,7 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
     private val progress: ProgressView.Listener? by lazy { activity as? ProgressView.Listener }
     private val pullToRefresh: PullToRefreshListener? by lazy { activity as? PullToRefreshListener }
     private val infoBar: InfoBarView.Listener? by lazy { activity as? InfoBarView.Listener }
+    private val bnvNavigation: BottomNavigationViewListener? by lazy { activity as? BottomNavigationViewListener }
 
     fun showLoader() {
         progress?.showLoader()
@@ -37,6 +39,14 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
 
     fun showSuccessMessage(message: String, isShowAlways: Boolean = false) {
         infoBar?.showSuccessMessage(message, isShowAlways)
+    }
+
+    fun showBar() {
+        bnvNavigation?.showNavigationBar()
+    }
+
+    fun hideBar() {
+        bnvNavigation?.hideNavigationBar()
     }
 
     override fun onStop() {
