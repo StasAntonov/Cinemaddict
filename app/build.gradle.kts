@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,6 +11,9 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
 }
+val apiKeysFile = rootProject.file("local.properties")
+val apiKeys = Properties()
+apiKeys.load(FileInputStream(apiKeysFile))
 
 android {
     namespace = "com.example.cinemaddict"
@@ -22,8 +28,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        //TODO add base url
-        buildConfigField("String", "BASE_URL", "\"https://google.com\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
+
+        buildConfigField("String", "ACCESS_KEY", apiKeys["ACCESS_KEY"] as String)
     }
 
     buildTypes {

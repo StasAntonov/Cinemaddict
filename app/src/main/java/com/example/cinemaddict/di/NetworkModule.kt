@@ -32,7 +32,6 @@ object NetworkModule {
     @Singleton
     fun provideOkHttp(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(BaseInterceptor())
-        .authenticator(BaseInterceptor())
         .build()
 
     @Provides
