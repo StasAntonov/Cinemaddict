@@ -3,6 +3,7 @@ package com.example.cinemaddict.ui
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ActivityMainBinding
 import com.example.cinemaddict.ui.base.BaseUiActivity
@@ -48,28 +49,8 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
         super.iniListeners()
 
         binding.bnvNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home,
-                R.id.discover,
-                R.id.profile -> {
-                    pushToBackStack(it.itemId)
-                    itemSelectNavigation(it.itemId)
-                }
-
-                else -> false
-            }
-        }
-    }
-
-    private fun itemSelectNavigation(fragment: Int): Boolean {
-        navController.let {
-            return if (it.currentDestination?.id != fragment) {
-                it.popBackStack(fragment, true)
-                it.navigate(fragment)
-                true
-            } else {
-                false
-            }
+            pushToBackStack(it.itemId)
+            NavigationUI.onNavDestinationSelected(it, navController)
         }
     }
 
