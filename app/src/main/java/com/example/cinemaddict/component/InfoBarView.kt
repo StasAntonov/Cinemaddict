@@ -10,11 +10,9 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ViewInfoBarBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.example.cinemaddict.ext.mainScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class InfoBarView @JvmOverloads constructor(
     context: Context,
@@ -32,7 +30,6 @@ class InfoBarView @JvmOverloads constructor(
     private val binding: ViewInfoBarBinding =
         ViewInfoBarBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val mainScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var animationJob: Job? = null
 
     private var state: UiState = UiState.NONE
@@ -111,7 +108,7 @@ class InfoBarView @JvmOverloads constructor(
         isShowAlways: Boolean = true
     ) = with(binding) {
         animationJob?.cancel()
-        animationJob = mainScope.launch {
+        animationJob = mainScope {
             if (state == UiState.NONE) {
                 container.setBackgroundColor(ContextCompat.getColor(context, newState.color))
                 tvText.text = message
@@ -130,7 +127,7 @@ class InfoBarView @JvmOverloads constructor(
                 toUpAnimator.start()
             }
 
-            if (isShowAlways) return@launch
+            if (isShowAlways) return@mainScope
             delay(heightAnimationDelay)
 
             toDownAnimator.start()

@@ -1,14 +1,14 @@
 package com.example.cinemaddict.ui
 
-import android.os.Build
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.ActivityMainBinding
 import com.example.cinemaddict.ui.base.BaseUiActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Stack
 
 @AndroidEntryPoint
 class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -17,17 +17,21 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
 
     private var isLaunchApp: Boolean = true
 
-    private lateinit var navHostFragment: NavHostFragment
+    private val navController: NavController by lazy {
+        (supportFragmentManager.findFragmentById(R.id.nav_container_main) as NavHostFragment).navController
+    }
+    private val startDestinationID: Int by lazy { navController.graph.startDestinationId }
+
+    private val fragmentBackStack: Stack<Int> by lazy { Stack<Int>().apply { push(startDestinationID) } }
 
     override fun initViews() = with(binding) {
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_container_main) as NavHostFragment
         bnvNavigation.itemIconTintList = null
 
         super.initViews()
     }
 
     override fun initObservers() {
+        super.initObservers()
         viewModel.isNetworkAvailable.observe(this) {
             if (it && !isLaunchApp) {
                 showSuccessMessage(
@@ -42,53 +46,51 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
     }
 
     override fun iniListeners() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT
-            ) {
-                onBack()
-            }
-        } else {
-            onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBack()
-                }
-            })
-        }
+        super.iniListeners()
 
         binding.bnvNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home,
-                R.id.discover,
-                R.id.profile -> itemSelectNavigation(it.itemId)
+            pushToBackStack(it.itemId)
+            NavigationUI.onNavDestinationSelected(it, navController)
+        }
+    }
 
-                else -> {
-                    false
+    private fun pushToBackStack(fragmentId: Int): Boolean {
+        if (fragmentId == fragmentBackStack.lastOrNull()) {
+            return false
+        }
+
+        if (!fragmentBackStack.contains(fragmentId)) {
+            fragmentBackStack.push(fragmentId)
+        } else {
+            if (fragmentId == startDestinationID) {
+                if (fragmentBackStack.count { it == startDestinationID } < 2) {
+                    fragmentBackStack.push(fragmentId)
+                } else {
+                    fragmentBackStack.asReversed().remove(fragmentId)
+                    fragmentBackStack.push(fragmentId)
+                }
+            } else {
+                fragmentBackStack.remove(fragmentId)
+                fragmentBackStack.push(fragmentId)
+                if (fragmentBackStack[0] == fragmentBackStack[1]) {
+                    fragmentBackStack.removeFirst()
                 }
             }
         }
+        return true
     }
 
-    private fun itemSelectNavigation(fragment: Int): Boolean {
-        navHostFragment.navController.let {
-            return if (it.currentDestination?.id != fragment) {
-                it.popBackStack(fragment, true)
-                it.navigate(fragment)
-                true
-            } else {
-                false
-            }
-        }
-    }
-
-    private fun onBack() {
-        navHostFragment.navController.let {
-            if (it.currentDestination?.id != R.id.home) {
-                it.popBackStack(R.id.home, false)
-                binding.bnvNavigation.menu.findItem(R.id.home).isChecked = true
-            } else {
+    override fun onBackListener() {
+        if (fragmentBackStack.contains(navController.currentDestination?.id)) {
+            if (fragmentBackStack.size > 1) {
+                fragmentBackStack.pop()
+                val fragmentId = fragmentBackStack.lastElement()
+                binding.bnvNavigation.selectedItemId = fragmentId
+            } else if (fragmentBackStack.size == 1) {
                 finish()
             }
+        } else {
+            navController.popBackStack()
         }
     }
 }
