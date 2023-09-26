@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cinemaddict.R
 import com.example.cinemaddict.component.GradientTextView
+import com.example.cinemaddict.domain.entity.GenreData
 import com.example.cinemaddict.ui.discover.film.FilmFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,9 +19,9 @@ class GenrePagerAdapter @Inject constructor(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle), TabLayoutMediator.TabConfigurationStrategy {
 
-    private val genres: MutableList<String> = mutableListOf()
+    private val genres: MutableList<GenreData> = mutableListOf()
 
-    fun setGenres(genresList: List<String>) {
+    fun setGenres(genresList: List<GenreData>) {
         genres.clear()
         genres.addAll(genresList)
         notifyDataSetChanged()
@@ -31,7 +32,7 @@ class GenrePagerAdapter @Inject constructor(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return FilmFragment.newInstance(genres[position])
+        return FilmFragment.newInstance(genres[position].name)
     }
 
     override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
@@ -40,7 +41,7 @@ class GenrePagerAdapter @Inject constructor(
             tab.view as ViewGroup,
             false
         ) as GradientTextView
-        customView.text = genres[position]
+        customView.text = genres[position].name
         tab.customView = customView
     }
 }

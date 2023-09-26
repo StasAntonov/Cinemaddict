@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cinemaddict.R
 import com.example.cinemaddict.databinding.FragmentFilmBinding
-import com.example.cinemaddict.network.model.Film
+import com.example.cinemaddict.repository.response.Film
 import com.example.cinemaddict.ui.base.BaseFragment
 import com.example.cinemaddict.ui.discover.FilmAdapter
 

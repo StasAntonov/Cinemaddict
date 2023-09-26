@@ -6,7 +6,7 @@
 
         <variable
             name="film"
-            type="com.example.cinemaddict.network.model.Film" />
+            type="com.example.cinemaddict.repository.response.Film" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
