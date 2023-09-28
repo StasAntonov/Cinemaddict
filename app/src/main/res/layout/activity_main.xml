@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background"
-            android:elevation="0dp"
+            app:elevation="0dp"
             android:minHeight="@dimen/bottom_navigation_view_min_height"
             app:itemIconSize="@dimen/bottom_navigation_view_icon_size"
             app:itemRippleColor="@null"
