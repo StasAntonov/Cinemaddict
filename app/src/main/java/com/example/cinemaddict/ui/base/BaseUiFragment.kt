@@ -7,7 +7,6 @@ import com.example.cinemaddict.R
 import com.example.cinemaddict.common.BottomNavigationViewListener
 import com.example.cinemaddict.component.InfoBarView
 import com.example.cinemaddict.component.ProgressView
-import com.example.cinemaddict.ui.discover.BaseViewModel
 import com.simform.refresh.SSPullToRefreshLayout
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
