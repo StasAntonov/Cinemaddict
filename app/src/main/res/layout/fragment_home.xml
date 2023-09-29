@@ -19,6 +19,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.example.cinemaddict.component.GradientTextView
+                    android:id="@+id/tv_watch_title_gradient"
+                    style="@style/Text.Header.Gradient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/xx_big_margin"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:text="@string/home_stream"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Text.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/tiny_margin"
+                    android:text="@string/home_everywhere"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_watch_title_gradient"
+                    app:layout_constraintStart_toEndOf="@+id/tv_watch_title_gradient"
+                    app:layout_constraintTop_toTopOf="@+id/tv_watch_title_gradient" />
+
+                <include
+                    android:id="@+id/inc_latest"
+                    layout="@layout/item_latest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/xx_big_margin"
+                    android:layout_marginTop="@dimen/xxx_big_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_watch_title_gradient" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_details"
                     android:layout_width="wrap_content"
@@ -29,9 +59,5 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.simform.refresh.SSPullToRefreshLayout>
-
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
