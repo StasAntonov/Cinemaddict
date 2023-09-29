@@ -7,4 +7,6 @@
 
     <string name="home_stream">Stream</string>
     <string name="home_everywhere">Everywhere</string>
+
+    <string name="item_latest_continue_watching">Continue Watching</string>
 </resources>
