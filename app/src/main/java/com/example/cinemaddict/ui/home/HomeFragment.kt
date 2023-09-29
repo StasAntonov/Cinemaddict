@@ -23,7 +23,10 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
 //        }
 
         incLatest.viewData =
-            LatestMovieData("https://image.tmdb.org/t/p/w500/nAS7A7ZdUDQLHXsvg2XAX3IUkml.jpg")
+            LatestMovieData(
+                "https://image.tmdb.org/t/p/w500/nAS7A7ZdUDQLHXsvg2XAX3IUkml.jpg",
+                "Мег 2: Бездна"
+            )
     }
 
     override fun initListeners() {
