@@ -153,7 +153,7 @@ class InfoBarView @JvmOverloads constructor(
         const val COLOR_ANIMATION_DELAY = 350L
     }
 
-    interface Listener {
+    interface Informer {
         fun showMessage(message: String, isShowAlways: Boolean)
         fun showErrorMessage(message: String, isShowAlways: Boolean)
         fun showSuccessMessage(message: String, isShowAlways: Boolean)

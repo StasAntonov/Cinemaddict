@@ -59,24 +59,19 @@ class MainActivity : BaseUiActivity<ActivityMainBinding>(ActivityMainBinding::in
             return false
         }
 
-        if (!fragmentBackStack.contains(fragmentId)) {
-            fragmentBackStack.push(fragmentId)
-        } else {
+        if (fragmentBackStack.contains(fragmentId)) {
             if (fragmentId == startDestinationID) {
-                if (fragmentBackStack.count { it == startDestinationID } < 2) {
-                    fragmentBackStack.push(fragmentId)
-                } else {
+                if (fragmentBackStack.count { it == startDestinationID } > 1) {
                     fragmentBackStack.asReversed().remove(fragmentId)
-                    fragmentBackStack.push(fragmentId)
                 }
             } else {
                 fragmentBackStack.remove(fragmentId)
-                fragmentBackStack.push(fragmentId)
                 if (fragmentBackStack[0] == fragmentBackStack[1]) {
                     fragmentBackStack.removeFirst()
                 }
             }
         }
+        fragmentBackStack.push(fragmentId)
         return true
     }
 
