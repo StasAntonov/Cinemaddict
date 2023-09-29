@@ -3,17 +3,16 @@ package com.example.cinemaddict.ui.base
 import android.view.LayoutInflater
 import androidx.databinding.ViewDataBinding
 import com.example.cinemaddict.R
-import com.example.cinemaddict.common.BottomNavigationViewListener
 import com.example.cinemaddict.component.InfoBarView
-import com.example.cinemaddict.component.MovBottomNavigationView
 import com.example.cinemaddict.component.ProgressView
+import com.example.cinemaddict.util.BottomNavigationAnimator
 
 abstract class BaseUiActivity<T : ViewDataBinding>(
     bindingInflater: (LayoutInflater) -> T
 ) : BaseActivity<T>(bindingInflater),
-    ProgressView.Listener,
-    InfoBarView.Listener,
-    BottomNavigationViewListener {
+    ProgressView.Loader,
+    InfoBarView.Informer,
+    BottomNavigationAnimator.Animator {
 
     private val progress: ProgressView? by lazy {
         binding.root.findViewById(R.id.progress)
@@ -23,8 +22,8 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
         binding.root.findViewById(R.id.info_bar)
     }
 
-    private val bnvNavigation: MovBottomNavigationView? by lazy {
-        binding.root.findViewById(R.id.bnv_navigation)
+    private val bnAnimator: BottomNavigationAnimator? by lazy {
+        BottomNavigationAnimator(binding.root.findViewById(R.id.bnv_navigation))
     }
 
     override fun showLoader() {
@@ -48,11 +47,11 @@ abstract class BaseUiActivity<T : ViewDataBinding>(
     }
 
     override fun showNavigationBar() {
-        bnvNavigation?.showBar() ?: navigationBarError()
+        bnAnimator?.showBar() ?: navigationBarError()
     }
 
     override fun hideNavigationBar() {
-        bnvNavigation?.hideBar() ?: navigationBarError()
+        bnAnimator?.hideBar() ?: navigationBarError()
     }
 
     private fun progressViewError(): Nothing =

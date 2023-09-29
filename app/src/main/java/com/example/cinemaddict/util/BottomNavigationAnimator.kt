@@ -1,8 +1,7 @@
-package com.example.cinemaddict.component
+package com.example.cinemaddict.util
 
 import android.animation.ValueAnimator
-import android.content.Context
-import android.util.AttributeSet
+import androidx.core.view.doOnDetach
 import androidx.core.view.forEach
 import com.example.cinemaddict.R
 import com.example.cinemaddict.ext.mainScope
@@ -11,22 +10,19 @@ import kotlinx.coroutines.Job
 import kotlin.math.max
 import kotlin.math.min
 
-class MovBottomNavigationView @JvmOverloads constructor(
-    context: Context,
-    attributeSet: AttributeSet? = null,
-    defAttr: Int = 0
-) : BottomNavigationView(context, attributeSet, defAttr) {
-
+class BottomNavigationAnimator(
+    private val bottomNavigation: BottomNavigationView
+) {
     private var bottomNavigationJob: Job? = null
     private val toUpMinBottomNavigationHeight: Int
-        get() = max(this.height, 1)
+        get() = max(bottomNavigation.height, 1)
     private val toUpMaxBottomNavigationHeight: Int
-        get() = resources.getDimensionPixelSize(R.dimen.bottom_navigation_view_min_height)
+        get() = bottomNavigation.context.resources.getDimensionPixelSize(R.dimen.bottom_navigation_view_min_height)
     private val toDownMinBottomNavigationHeight: Int = 1
     private val toDownMaxBottomNavigationHeight: Int
         get() = min(
-            this.height,
-            resources.getDimensionPixelSize(R.dimen.bottom_navigation_view_min_height)
+            bottomNavigation.height,
+            bottomNavigation.context.resources.getDimensionPixelSize(R.dimen.bottom_navigation_view_min_height)
         )
 
     private val toUpAnimator: ValueAnimator
@@ -37,7 +33,7 @@ class MovBottomNavigationView @JvmOverloads constructor(
                     addUpdateListener { value ->
                         val height = value.animatedValue as Int
                         if (height == toUpMinBottomNavigationHeight) {
-                            this@MovBottomNavigationView.menu.forEach { it.isEnabled = true }
+                            bottomNavigation.menu.forEach { it.isEnabled = true }
                         }
                         updateViewHeight(height)
                     }
@@ -51,15 +47,23 @@ class MovBottomNavigationView @JvmOverloads constructor(
                     addUpdateListener { value ->
                         val height = value.animatedValue as Int
                         if (height == toDownMaxBottomNavigationHeight) {
-                            this@MovBottomNavigationView.menu.forEach { it.isEnabled = false }
+                            bottomNavigation.menu.forEach { it.isEnabled = false }
                         }
                         updateViewHeight(height)
                     }
                 }
 
     private fun updateViewHeight(height: Int) {
-        this.layoutParams?.height = height
-        this.requestLayout()
+        bottomNavigation.layoutParams?.height = height
+        bottomNavigation.requestLayout()
+    }
+
+    init {
+        bottomNavigation.doOnDetach {
+            bottomNavigationJob?.cancel()
+            toUpAnimator.removeAllUpdateListeners()
+            toDownAnimator.removeAllUpdateListeners()
+        }
     }
 
     fun showBar() {
@@ -76,11 +80,9 @@ class MovBottomNavigationView @JvmOverloads constructor(
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        bottomNavigationJob?.cancel()
-        toUpAnimator.removeAllUpdateListeners()
-        toDownAnimator.removeAllUpdateListeners()
+    interface Animator {
+        fun showNavigationBar()
+        fun hideNavigationBar()
     }
 
     private companion object {

@@ -27,7 +27,7 @@ class ProgressView @JvmOverloads constructor(
         binding.container.toGone()
     }
 
-    interface Listener {
+    interface Loader {
         fun showLoader()
         fun hideLoader()
     }

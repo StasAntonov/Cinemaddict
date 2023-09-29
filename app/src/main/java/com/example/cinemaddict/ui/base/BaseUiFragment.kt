@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.example.cinemaddict.R
-import com.example.cinemaddict.common.BottomNavigationViewListener
 import com.example.cinemaddict.component.InfoBarView
 import com.example.cinemaddict.component.ProgressView
+import com.example.cinemaddict.util.BottomNavigationAnimator
 import com.simform.refresh.SSPullToRefreshLayout
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -19,10 +19,10 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
     bindingInflater: (LayoutInflater) -> T
 ) : BaseFragment<T>(bindingInflater) {
 
-    private val progress: ProgressView.Listener? by lazy { activity as? ProgressView.Listener }
+    private val progress: ProgressView.Loader? by lazy { activity as? ProgressView.Loader }
     private var pullToRefresh: SSPullToRefreshLayout? = null
-    private val infoBar: InfoBarView.Listener? by lazy { activity as? InfoBarView.Listener }
-    private val bnvNavigation: BottomNavigationViewListener? by lazy { activity as? BottomNavigationViewListener }
+    private val infoBar: InfoBarView.Informer? by lazy { activity as? InfoBarView.Informer }
+    private val bnvNavigation: BottomNavigationAnimator.Animator? by lazy { activity as? BottomNavigationAnimator.Animator }
 
     protected open val viewModel: BaseViewModel? = null
 
