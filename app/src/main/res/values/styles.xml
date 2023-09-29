@@ -11,6 +11,11 @@
         <item name="android:textSize">@dimen/big_text_size</item>
     </style>
 
+    <style name="Text.Header.Gradient">
+        <item name="startColor">@color/gradient_start_color</item>
+        <item name="endColor">@color/gradient_end_color</item>
+    </style>
+
     <style name="Text.Header.Medium">
         <item name="android:fontFamily">@font/lato_500</item>
     </style>
