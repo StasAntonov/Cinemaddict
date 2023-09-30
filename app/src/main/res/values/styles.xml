@@ -85,4 +85,14 @@
     <style name="Text.Label">
         <item name="android:textSize">@dimen/extra_small_text_size</item>
     </style>
+
+
+    <!--    blur-->
+    <style name="Blur">
+        <item name="backgroundColorOverlay">@color/blur_background</item>
+        <item name="blur">15</item>
+        <item name="cornerRadiusView">@dimen/medium_radius</item>
+        <item name="startColorGradient">@color/border_gradient_start_color</item>
+        <item name="strokeWidth">@dimen/view_stroke_width</item>
+    </style>
 </resources>

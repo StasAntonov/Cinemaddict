@@ -61,5 +61,6 @@
 
     <!--    view radius-->
     <dimen name="big_radius">30dp</dimen>
+    <dimen name="medium_radius">20dp</dimen>
     <dimen name="search_view_corner">20dp</dimen>
 </resources>

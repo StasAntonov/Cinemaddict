@@ -23,16 +23,12 @@
 
         <com.example.cinemaddict.component.BlurBackgroundView
             android:id="@+id/v_blur"
+            style="@style/Blur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/extra_small_margin"
-            app:backgroundColorOverlay="@color/blur_background"
-            app:blur="15"
-            app:cornerRadiusView="20dp"
-            app:startColorGradient="@color/border_gradient_start_color"
-            app:strokeWidth="1dp">
+            android:layout_marginBottom="@dimen/extra_small_margin">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_play"
