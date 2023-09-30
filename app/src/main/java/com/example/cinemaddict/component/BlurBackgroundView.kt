@@ -10,10 +10,12 @@ import android.graphics.PorterDuffXfermode
 import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Shader
+import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.allViews
 import androidx.core.view.doOnNextLayout
@@ -28,7 +30,7 @@ class BlurBackgroundView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var bitmap: Bitmap? = null
     private var previousBitmap: Bitmap? = null
@@ -118,14 +120,6 @@ class BlurBackgroundView @JvmOverloads constructor(
         updateBackgroundFromView()
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        bitmap?.let {
-            canvas?.drawBitmap(it, 0f, 0f, null)
-        }
-        previousBitmap = bitmap
-    }
-
     private fun addOnDrawListener() {
         viewsUnderBlur.forEach {
             it.doOnNextLayout { view ->
@@ -161,7 +155,10 @@ class BlurBackgroundView @JvmOverloads constructor(
         bitmap = createRoundedBitmap(bitmap)
 
         if (bitmap?.equals(previousBitmap) == false) {
-            invalidate()
+            bitmap?.let {
+                background = BitmapDrawable(resources, it)
+            }
+            previousBitmap = bitmap
         }
     }
 
