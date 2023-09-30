@@ -63,7 +63,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
 
-    //Retrofit
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.code.gson:gson:2.9.0")
@@ -71,14 +71,14 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil:2.4.0")
 
-    //Paging
+    // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
 
-    //hilt
+    // hilt
     implementation("com.google.dagger:hilt-android:2.47")
     ksp("com.google.dagger:hilt-compiler:2.47")
 
-    //navController
+    // navController
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
@@ -97,6 +97,9 @@ dependencies {
     // SSPullToRefresh
     implementation("com.github.SimformSolutionsPvtLtd:SSPullToRefresh:1.5.1")
 
-    //Blur
+    // Blur
     implementation("jp.wasabeef:glide-transformations:4.3.0")
+
+    // Carousel
+    implementation("com.github.sparrow007:carouselrecyclerview:1.2.6")
 }

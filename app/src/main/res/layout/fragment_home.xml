@@ -15,51 +15,73 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.example.cinemaddict.component.GradientTextView
-                    android:id="@+id/tv_watch_title_gradient"
-                    style="@style/Text.Header.Gradient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/xx_big_margin"
-                    android:layout_marginTop="@dimen/large_margin"
-                    android:text="@string/home_stream"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text.Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/tiny_margin"
-                    android:text="@string/home_everywhere"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_watch_title_gradient"
-                    app:layout_constraintStart_toEndOf="@+id/tv_watch_title_gradient"
-                    app:layout_constraintTop_toTopOf="@+id/tv_watch_title_gradient" />
-
-                <include
-                    android:id="@+id/inc_latest"
-                    layout="@layout/item_latest"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/xx_big_margin"
-                    android:layout_marginTop="@dimen/xxx_big_margin"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_watch_title_gradient" />
+                    android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
-                    android:text="Details"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <com.example.cinemaddict.component.GradientTextView
+                        android:id="@+id/tv_watch_title_gradient"
+                        style="@style/Text.Header.Gradient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/xx_big_margin"
+                        android:layout_marginTop="@dimen/xxx_large_margin"
+                        android:text="@string/home_stream"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Text.Header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tiny_margin"
+                        android:text="@string/home_everywhere"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_watch_title_gradient"
+                        app:layout_constraintStart_toEndOf="@+id/tv_watch_title_gradient"
+                        app:layout_constraintTop_toTopOf="@+id/tv_watch_title_gradient" />
+
+                    <include
+                        android:id="@+id/inc_latest"
+                        layout="@layout/item_latest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/xx_big_margin"
+                        android:layout_marginTop="@dimen/xxx_big_margin"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_watch_title_gradient" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_trending"
+                        style="@style/Text.Header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/xx_big_margin"
+                        android:layout_marginTop="@dimen/x_large_margin"
+                        android:text="@string/home_trending"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/inc_latest" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x_large_margin"
+                        android:layout_marginBottom="@dimen/xx_big_margin"
+                        android:clipToPadding="false"
+                        android:paddingEnd="@dimen/home_trending_padding_end"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_trending"
+                        tools:listitem="@layout/item_trending" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
         </com.simform.refresh.SSPullToRefreshLayout>
     </FrameLayout>
 </layout>

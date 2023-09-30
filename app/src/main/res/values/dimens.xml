@@ -10,7 +10,8 @@
     <dimen name="x_big_margin">20dp</dimen>
     <dimen name="xx_big_margin">24dp</dimen>
     <dimen name="xxx_big_margin">28dp</dimen>
-    <dimen name="large_margin">44dp</dimen>
+    <dimen name="x_large_margin">36dp</dimen>
+    <dimen name="xxx_large_margin">44dp</dimen>
 
     <!--    padding-->
     <dimen name="tiny_padding">7dp</dimen>
@@ -52,6 +53,12 @@
     <dimen name="pull_to_refresh_height">100dp</dimen>
 
     <dimen name="item_latest_image_height">191dp</dimen>
+
+    <dimen name="item_trending_image_margin_horizontal">58dp</dimen>
+    <dimen name="item_trending_image_height">336dp</dimen>
+    <dimen name="item_trending_image_width">258dp</dimen>
+
+    <dimen name="home_trending_padding_end">59dp</dimen>
 
     <!--    stroke width-->
     <dimen name="view_stroke_width">1dp</dimen>
