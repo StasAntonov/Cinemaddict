@@ -4,4 +4,9 @@
     <string name="internet_no_connection">No connection</string>
     <string name="internet_connection_restored">Connection restored</string>
     <string name="search">Search...</string>
+
+    <string name="home_stream">Stream</string>
+    <string name="home_everywhere">Everywhere</string>
+
+    <string name="item_latest_continue_watching">Continue Watching</string>
 </resources>

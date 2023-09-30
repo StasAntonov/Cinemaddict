@@ -7,13 +7,19 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Shader
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.ColorRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.allViews
+import androidx.core.view.doOnNextLayout
+import androidx.core.view.drawToBitmap
 import com.example.cinemaddict.R
 import jp.wasabeef.glide.transformations.internal.FastBlur
 import jp.wasabeef.glide.transformations.internal.RSBlur
@@ -24,9 +30,10 @@ class BlurBackgroundView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var backgroundImage: Bitmap? = null
+    private var bitmap: Bitmap? = null
+    private var previousBitmap: Bitmap? = null
     private var radius = 0f
     private var blur = 0
     private var angleInDegrees = 0
@@ -65,6 +72,14 @@ class BlurBackgroundView @JvmOverloads constructor(
         )
     }
 
+    private val blurView: View? by lazy { rootView.allViews.find { it == this } }
+
+    private val viewsUnderBlur: List<View> by lazy {
+        rootView.allViews.takeWhile { it != this }
+            .filter { it !is ViewGroup && viewsOverlap(blurView, it) }
+            .toList()
+    }
+
     init {
         context.obtainStyledAttributes(attrs, R.styleable.BlurBackgroundView, defStyleAttr, 0)
             .let {
@@ -97,19 +112,31 @@ class BlurBackgroundView @JvmOverloads constructor(
                 )
                 it.recycle()
             }
-        backgroundImage = (background as? BitmapDrawable)?.bitmap
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
+        addOnDrawListener()
         updateBackgroundFromView()
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        backgroundImage?.let {
-            canvas?.drawBitmap(it, 0f, 0f, null)
+    private fun addOnDrawListener() {
+        viewsUnderBlur.forEach {
+            it.doOnNextLayout { view ->
+                if (it.drawToBitmap() != view.drawToBitmap())
+                    updateBackgroundFromView()
+            }
         }
+    }
+
+    private fun viewsOverlap(view1: View?, view2: View?): Boolean {
+        val rect1 = Rect()
+        val rect2 = Rect()
+
+        view1?.getGlobalVisibleRect(rect1) ?: return false
+        view2?.getGlobalVisibleRect(rect2) ?: return false
+
+        return rect1.intersect(rect2)
     }
 
     private fun updateBackgroundFromView() {
@@ -118,21 +145,40 @@ class BlurBackgroundView @JvmOverloads constructor(
         val viewX = location[0]
         val viewY = location[1]
 
+        val croppedBitmap = Bitmap.createBitmap(getScreenshot(), viewX, viewY, width, height)
+
+        bitmap = if (blur > 0) {
+            applyBlur(croppedBitmap)
+        } else {
+            croppedBitmap
+        }
+        bitmap = createRoundedBitmap(bitmap)
+
+        if (bitmap?.equals(previousBitmap) == false) {
+            bitmap?.let {
+                background = BitmapDrawable(resources, it)
+            }
+            previousBitmap = bitmap
+        }
+    }
+
+    private fun getScreenshot(): Bitmap {
         val rootView = rootView
 
         val screenshot =
             Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(screenshot)
-        rootView.draw(canvas)
 
-        val croppedBitmap = Bitmap.createBitmap(screenshot, viewX, viewY, width, height)
-
-        backgroundImage = if (blur > 0) {
-            applyBlur(croppedBitmap)
-        } else {
-            croppedBitmap
+        viewsUnderBlur.forEach { view ->
+            val viewLocation = IntArray(2)
+            view.getLocationOnScreen(viewLocation)
+            canvas.save()
+            canvas.translate(viewLocation.first().toFloat(), viewLocation.last().toFloat())
+            view.draw(canvas)
+            canvas.restore()
         }
-        backgroundImage = createRoundedBitmap(backgroundImage)
+
+        return screenshot
     }
 
     private fun getGradientAngle(): LinearGradient {
@@ -187,7 +233,10 @@ class BlurBackgroundView @JvmOverloads constructor(
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(sourceBitmap, 0f, 0f, paint)
 
-        overlayPaint.color = ContextCompat.getColor(context, overlayColor)
+        overlayPaint.apply {
+            isAntiAlias = true
+            color = ContextCompat.getColor(context, overlayColor)
+        }
         canvas.drawRoundRect(viewShape, radius, radius, overlayPaint)
 
         canvas.drawRoundRect(roundedRect, radiusCornerLine, radiusCornerLine, createGradientLine())
