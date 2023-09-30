@@ -9,7 +9,7 @@ import coil.transform.RoundedCornersTransformation
     value = ["app:loadImage", "app:cornerImageRadius"],
     requireAll = false
 )
-fun ImageView.loadImage(url: String, radius: Float? = null) {
+fun ImageView.loadImage(url: String? = null, radius: Float? = null) {
     this.load(url) {
         radius?.let { transformations(RoundedCornersTransformation(it, it, it, it)) }
     }

@@ -2,6 +2,7 @@ package com.example.cinemaddict.ui.home
 
 import com.example.cinemaddict.databinding.FragmentHomeBinding
 import com.example.cinemaddict.domain.entity.LatestMovieData
+import com.example.cinemaddict.ext.mainScope
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,11 +23,15 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
 //            viewModel.refresh(count)
 //        }
 
-        incLatest.viewData =
-            LatestMovieData(
-                "https://image.tmdb.org/t/p/w500/nAS7A7ZdUDQLHXsvg2XAX3IUkml.jpg",
-                "Мег 2: Бездна"
-            )
+        mainScope {
+            incLatest.viewData =
+                LatestMovieData(
+                    "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+                    "Мег 2: Бездна"
+                )
+        }
+
+        Unit
     }
 
     override fun initListeners() {
