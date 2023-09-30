@@ -11,6 +11,11 @@
         <item name="android:textSize">@dimen/big_text_size</item>
     </style>
 
+    <style name="Text.Header.Gradient">
+        <item name="startColor">@color/gradient_start_color</item>
+        <item name="endColor">@color/gradient_end_color</item>
+    </style>
+
     <style name="Text.Header.Medium">
         <item name="android:fontFamily">@font/lato_500</item>
     </style>
@@ -101,5 +106,14 @@
         <item name="android:paddingHorizontal">@dimen/normal_padding</item>
         <item name="android:background">@color/transparent</item>
         <item name="tabMode">scrollable</item>
+    </style>
+
+    <!--    blur-->
+    <style name="Blur">
+        <item name="backgroundColorOverlay">@color/blur_background</item>
+        <item name="blur">15</item>
+        <item name="cornerRadiusView">@dimen/medium_radius</item>
+        <item name="startColorGradient">@color/border_gradient_start_color</item>
+        <item name="strokeWidth">@dimen/view_stroke_width</item>
     </style>
 </resources>

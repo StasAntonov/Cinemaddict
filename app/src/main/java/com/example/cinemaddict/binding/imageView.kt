@@ -1,11 +1,16 @@
 package com.example.cinemaddict.binding
 
-import androidx.appcompat.widget.AppCompatImageView
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-//todo improve
-@BindingAdapter("app:imageView")
-fun setImageView(view: AppCompatImageView, drawable: Int?) {
-    drawable?.let {
-        view.setImageResource(it)
+import coil.load
+import coil.transform.RoundedCornersTransformation
+
+@BindingAdapter(
+    value = ["app:loadImage", "app:cornerImageRadius"],
+    requireAll = false
+)
+fun ImageView.loadImage(url: String? = null, radius: Float? = null) {
+    this.load(url) {
+        radius?.let { transformations(RoundedCornersTransformation(it)) }
     }
 }
