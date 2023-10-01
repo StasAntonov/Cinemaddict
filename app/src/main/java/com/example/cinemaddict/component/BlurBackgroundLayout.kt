@@ -26,7 +26,7 @@ import jp.wasabeef.glide.transformations.internal.RSBlur
 import kotlin.math.cos
 import kotlin.math.sin
 
-class BlurBackgroundView @JvmOverloads constructor(
+class BlurBackgroundLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -81,34 +81,34 @@ class BlurBackgroundView @JvmOverloads constructor(
     }
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.BlurBackgroundView, defStyleAttr, 0)
+        context.obtainStyledAttributes(attrs, R.styleable.BlurBackgroundLayout, defStyleAttr, 0)
             .let {
                 radius = it.getDimension(
-                    R.styleable.BlurBackgroundView_cornerRadiusView,
+                    R.styleable.BlurBackgroundLayout_cornerRadiusView,
                     radius
                 )
                 overlayColor = it.getResourceId(
-                    R.styleable.BlurBackgroundView_backgroundColorOverlay,
+                    R.styleable.BlurBackgroundLayout_backgroundColorOverlay,
                     overlayColor
                 )
                 startColor = it.getResourceId(
-                    R.styleable.BlurBackgroundView_startColorGradient,
+                    R.styleable.BlurBackgroundLayout_startColorGradient,
                     startColor
                 )
                 endColor = it.getResourceId(
-                    R.styleable.BlurBackgroundView_endColorGradient,
+                    R.styleable.BlurBackgroundLayout_endColorGradient,
                     endColor
                 )
                 strokeWidthGradientLine = it.getDimension(
-                    R.styleable.BlurBackgroundView_strokeWidth,
+                    R.styleable.BlurBackgroundLayout_strokeWidth,
                     strokeWidthGradientLine
                 )
                 angleInDegrees = it.getInt(
-                    R.styleable.BlurBackgroundView_angleGradient,
+                    R.styleable.BlurBackgroundLayout_angleGradient,
                     angleInDegrees
                 )
                 blur = it.getInt(
-                    R.styleable.BlurBackgroundView_blur, blur
+                    R.styleable.BlurBackgroundLayout_blur, blur
                 )
                 it.recycle()
             }

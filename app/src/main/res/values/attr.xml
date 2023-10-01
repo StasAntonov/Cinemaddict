@@ -5,7 +5,7 @@
         <attr name="endColor" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="BlurBackgroundView">
+    <declare-styleable name="BlurBackgroundLayout">
         <attr name="startColorGradient" format="reference" />
         <attr name="endColorGradient" format="reference" />
         <attr name="blur" format="integer" />
