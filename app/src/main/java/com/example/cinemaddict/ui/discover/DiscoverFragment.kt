@@ -15,7 +15,8 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
     private lateinit var adapter: GenrePagerAdapter
 
     private lateinit var genres: List<GenreData>
-    private val viewModel: DiscoverViewModel by viewModels()
+    private val discoverViewModel: DiscoverViewModel by viewModels()
+
     override fun initViews() {
         super.initViews()
 
@@ -32,12 +33,12 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
 
     override fun initObservers() {
         super.initObservers()
-        viewModel.genre.observe(viewLifecycleOwner) {
+        discoverViewModel.genre.observe(viewLifecycleOwner) {
             genres = it
             adapter.setGenres(genres)
         }
 
-        viewModel.error.observe(viewLifecycleOwner) {
+        discoverViewModel.error.observe(viewLifecycleOwner) {
             toast(it)
         }
     }

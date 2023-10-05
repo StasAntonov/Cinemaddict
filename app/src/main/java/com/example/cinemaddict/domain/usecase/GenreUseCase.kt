@@ -5,7 +5,7 @@ import com.example.cinemaddict.network.ApiResponse
 import com.example.cinemaddict.repository.response.GenreListResponse
 import javax.inject.Inject
 
-class GetGenreUseCase @Inject constructor(
+class GenreUseCase @Inject constructor(
     private val movieRepository: MovieRepository
 ) {
     suspend fun getGenres(): ApiResponse<GenreListResponse> {

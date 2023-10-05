@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemaddict.domain.entity.GenreData
 import com.example.cinemaddict.domain.mapper.toGenreData
-import com.example.cinemaddict.domain.usecase.GetGenreUseCase
+import com.example.cinemaddict.domain.usecase.GenreUseCase
 import com.example.cinemaddict.network.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DiscoverViewModel @Inject constructor(
-    private val getGenreUseCase: GetGenreUseCase
+    private val genreUseCase: GenreUseCase
 ) : ViewModel() {
 
     val genre = MutableLiveData<List<GenreData>>()
@@ -26,7 +26,7 @@ class DiscoverViewModel @Inject constructor(
     private fun getGenres() {
         viewModelScope.launch {
 
-            getGenreUseCase.getGenres().let {
+            genreUseCase.getGenres().let {
                 when (it) {
                     is ApiResponse.Error -> {
                         error.postValue(it.throwable.message.toString())

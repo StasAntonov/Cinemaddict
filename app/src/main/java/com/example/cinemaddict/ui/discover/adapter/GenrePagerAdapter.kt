@@ -9,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cinemaddict.R
 import com.example.cinemaddict.component.GradientTextView
 import com.example.cinemaddict.domain.entity.GenreData
-import com.example.cinemaddict.ui.discover.film.FilmFragment
+import com.example.cinemaddict.ui.discover.film.DiscoverPagerFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
@@ -32,7 +32,7 @@ class GenrePagerAdapter @Inject constructor(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return FilmFragment.newInstance(genres[position].name)
+        return DiscoverPagerFragment.newInstance(genres[position].id.toString())
     }
 
     override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
