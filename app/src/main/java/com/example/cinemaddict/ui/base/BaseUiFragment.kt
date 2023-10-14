@@ -26,6 +26,8 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
 
     protected open val viewModel: BaseViewModel? = null
 
+    private var isEnableRefresh = false
+
     override fun initViews() {
         super.initViews()
 
@@ -49,7 +51,7 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
         super.initObservers()
         viewModel?.isRefresh?.observe(viewLifecycleOwner) {
             pullToRefresh?.setRefreshing(it)
-            pullToRefresh?.isEnabled = !it
+            pullToRefresh?.isEnabled = !it && isEnableRefresh
         }
     }
 
@@ -66,6 +68,7 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
         listener: PullToRefreshCallback
     ) {
         pullToRefresh?.apply {
+            isEnableRefresh = true
             isEnabled = viewModel?.isRefresh?.value?.not() ?: true
             setOnRefreshListener {
                 viewModel?.isRefresh?.postValue(true)
@@ -100,7 +103,6 @@ abstract class BaseUiFragment<T : ViewDataBinding>(
     override fun onStop() {
         super.onStop()
         progress?.hideLoader()
-        pullToRefresh?.setOnRefreshListener(null)
     }
 
     private fun pullToRefreshError(): Nothing =
