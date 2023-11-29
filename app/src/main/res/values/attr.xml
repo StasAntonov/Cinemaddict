@@ -21,4 +21,11 @@
         <attr name="heightAnimationDelay" format="integer" />
         <attr name="colorAnimationDelay" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="CenteredRecyclerView">
+        <attr name="startShrink" format="dimension" />
+        <attr name="endShrink" format="dimension" />
+        <attr name="shrinkRatio" format="float" />
+        <attr name="isCenterLastItem" format="boolean" />
+    </declare-styleable>
 </resources>

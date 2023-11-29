@@ -11,19 +11,14 @@ class CarouselLayoutManager @JvmOverloads constructor(
     reverseLayout: Boolean = false
 ) : LinearLayoutManager(context, orientation, reverseLayout) {
 
-    /**
-     * view compression starts when the left side of the view reaches this position
-     */
-    private val startShrink: Float = 47f    //todo
-
-    /**
-     * view compression ends when the right side of the view reaches this position
-     */
-    private val endShrink: Float = 65f  //todo
-
-    private val shrinkRatio = 1 - 0.869f    // todo
+    private var startShrink: Float = Float.MIN_VALUE
+    private var endShrink: Float = Float.MIN_VALUE
+    private var shrinkRatio: Float = 0.75f
     private val midpoint: Float
         get() = width / 2f
+
+    var isInitialized: Boolean = false
+        private set
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
         super.onLayoutChildren(recycler, state)
@@ -38,11 +33,10 @@ class CarouselLayoutManager @JvmOverloads constructor(
         return if (orientation == HORIZONTAL) {
             for (i in 0 until childCount) {
                 getChildAt(i)?.let { child ->
-
                     val startShrinkMidpoint = midpoint - (child.width / 2 + startShrink)
                     val endShrinkMidpoint = midpoint + (child.width / 2 - endShrink)
                     val shrinkDistance = endShrinkMidpoint - startShrinkMidpoint
-                    val shrinkPerPixel = shrinkRatio / shrinkDistance
+                    val shrinkPerPixel = (1 - shrinkRatio) / shrinkDistance
 
                     val itemMidpoint =
                         abs(((getDecoratedLeft(child) + getDecoratedRight(child)) / 2f) - midpoint)
@@ -56,5 +50,20 @@ class CarouselLayoutManager @JvmOverloads constructor(
         } else {
             0
         }
+    }
+
+    fun setStartShrink(startShrink: Float) {
+        this.startShrink = startShrink
+        isInitialized = true
+    }
+
+    fun setEndShrink(endShrink: Float) {
+        this.endShrink = endShrink
+        isInitialized = true
+    }
+
+    fun setShrinkRatio(shrinkRatio: Float) {
+        this.shrinkRatio = shrinkRatio
+        isInitialized = true
     }
 }
