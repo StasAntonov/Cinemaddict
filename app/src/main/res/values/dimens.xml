@@ -12,8 +12,6 @@
     <dimen name="xxx_big_margin">28dp</dimen>
     <dimen name="x_large_margin">36dp</dimen>
     <dimen name="xxx_large_margin">44dp</dimen>
-<!--    <dimen name="large_margin">36dp</dimen>-->
-<!--    <dimen name="x_large_margin">44dp</dimen>-->
 
     <!--    padding-->
     <dimen name="tiny_padding">7dp</dimen>

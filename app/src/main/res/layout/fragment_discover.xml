@@ -33,7 +33,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/xx_big_margin"
-                        android:layout_marginTop="@dimen/large_margin"
+                        android:layout_marginTop="@dimen/xxx_large_margin"
                         android:text="@string/find_movies_tv_series_and_more" />
 
                     <androidx.appcompat.widget.AppCompatEditText
