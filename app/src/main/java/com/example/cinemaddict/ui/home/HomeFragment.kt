@@ -8,6 +8,7 @@ import com.example.cinemaddict.databinding.ItemTrendingBinding
 import com.example.cinemaddict.domain.entity.LatestMovieData
 import com.example.cinemaddict.domain.entity.TrendingMovieData
 import com.example.cinemaddict.ui.base.BaseUiFragment
+import com.example.cinemaddict.util.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +36,7 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
                 "Мег 2: Бездна"
             )
 
+        rvList.layoutManager = CarouselLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         rvList.adapter = adapter
         adapter.submitList(getTrendingList())
 
@@ -42,6 +44,106 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
     }
 
     private fun getTrendingList(): List<TrendingMovieData> = listOf(
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+            "Avengers",
+            5f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
+            "Harry Potter",
+            25f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/53z2fXEKfnNg2uSOPss2unPBGX1.jpg",
+            "Naruto",
+            3f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/iOJX54nVAsnPawagFiWXKv1Y6sB.jpg",
+            "Star wars",
+            86f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+            "Spider-man",
+            23f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+            "Avengers",
+            5f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
+            "Harry Potter",
+            25f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/53z2fXEKfnNg2uSOPss2unPBGX1.jpg",
+            "Naruto",
+            3f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/iOJX54nVAsnPawagFiWXKv1Y6sB.jpg",
+            "Star wars",
+            86f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+            "Spider-man",
+            23f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+            "Avengers",
+            5f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
+            "Harry Potter",
+            25f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/53z2fXEKfnNg2uSOPss2unPBGX1.jpg",
+            "Naruto",
+            3f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/iOJX54nVAsnPawagFiWXKv1Y6sB.jpg",
+            "Star wars",
+            86f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+            "Spider-man",
+            23f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+            "Avengers",
+            5f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
+            "Harry Potter",
+            25f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/53z2fXEKfnNg2uSOPss2unPBGX1.jpg",
+            "Naruto",
+            3f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/iOJX54nVAsnPawagFiWXKv1Y6sB.jpg",
+            "Star wars",
+            86f
+        ),
+        TrendingMovieData(
+            "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+            "Spider-man",
+            23f
+        ),
         TrendingMovieData(
             "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
             "Avengers",

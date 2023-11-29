@@ -58,7 +58,8 @@
     <dimen name="item_trending_image_height">336dp</dimen>
     <dimen name="item_trending_image_width">258dp</dimen>
 
-    <dimen name="home_trending_padding_end">59dp</dimen>
+    <dimen name="home_trending_padding_start">12dp</dimen>
+    <dimen name="home_trending_padding_end">47dp</dimen>
 
     <!--    stroke width-->
     <dimen name="view_stroke_width">1dp</dimen>
