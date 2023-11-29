@@ -86,6 +86,27 @@
         <item name="android:textSize">@dimen/extra_small_text_size</item>
     </style>
 
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:fontFamily">@font/lato_400</item>
+        <item name="android:letterSpacing">@dimen/normal_ls</item>
+        <item name="tabSelectedTextColor">@color/cursor_color</item>
+    </style>
+
+    <style name="TabStyle">
+        <item name="tabTextAppearance">@style/TabTextStyle</item>
+        <item name="tabPaddingBottom">@dimen/tab_text_padding</item>
+        <item name="tabIndicatorColor">@color/indicator_color</item>
+        <item name="tabPaddingStart">0dp</item>
+        <item name="tabPaddingEnd">@dimen/normal_padding</item>
+        <item name="tabMinWidth">0dp</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="android:layout_marginTop">@dimen/xx_big_margin</item>
+        <item name="android:paddingHorizontal">@dimen/normal_padding</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="tabMode">scrollable</item>
+    </style>
 
     <!--    blur-->
     <style name="Blur">

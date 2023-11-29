@@ -3,6 +3,7 @@
     <declare-styleable name="GradientTextView">
         <attr name="startColor" format="reference" />
         <attr name="endColor" format="reference" />
+        <attr name="useGradient" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="BlurBackgroundLayout">

@@ -4,9 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cinemaddict.network.ApiResponse
 
-private typealias PagingCallback<T> = (Int, Int) -> ApiResponse<MovPagingWrapper<T>>
+private typealias PagingCallback<T> = suspend (Int) -> ApiResponse<MovPagingWrapper<T>>
 
-class MovPagingSource<T : MovPagingViewData>(
+class MovPagingSource<T : MovPagingResponse>(
     private val callback: PagingCallback<T>
 ) : PagingSource<Int, T>() {
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
@@ -18,7 +18,7 @@ class MovPagingSource<T : MovPagingViewData>(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         val page = params.key ?: INIT_PAGE
 
-        return when (val result = callback(page, params.loadSize)) {
+        return when (val result = callback(page)) {
             is ApiResponse.Success -> {
                 val nextPage = if (result.data.results.isNotEmpty()) {
                     if (page >= result.data.totalPages) null else page + 1
