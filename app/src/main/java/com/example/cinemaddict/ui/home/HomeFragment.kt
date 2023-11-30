@@ -25,7 +25,6 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
 
     override fun initViews() = with(binding) {
         super.initViews()
-
         incLatest.viewData =
             LatestMovieData(
                 "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",

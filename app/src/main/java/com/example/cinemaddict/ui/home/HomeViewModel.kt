@@ -1,8 +1,11 @@
 package com.example.cinemaddict.ui.home
 
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.cinemaddict.common.paging.MovPagingSource
 import com.example.cinemaddict.domain.entity.TrendingMovieData
 import com.example.cinemaddict.domain.usecase.home.TrendingUseCase
@@ -24,6 +27,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     ).flow
+        .cachedIn(viewModelScope)
 
     private companion object {
         const val PAGE_SIZE = 20
