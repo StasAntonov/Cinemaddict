@@ -13,7 +13,11 @@ interface HomeApi {
     @GET(GET_TRENDING)
     suspend fun getTrendingMovies(
         @Path(TimeWindow.NAME) timeWindow: String = TimeWindow.DAY,
-        @Query(Pagination.PAGE) page: Int = 1,
+        @Query(Pagination.PAGE) page: Int = INITIAL_PAGE,
         @Query(ApiQuery.LANGUAGE) language: String = "en-US"
     ): Response<MovPagingResponseWrapper<TrendingResponse>>
+
+    private companion object {
+        const val INITIAL_PAGE = 1
+    }
 }
