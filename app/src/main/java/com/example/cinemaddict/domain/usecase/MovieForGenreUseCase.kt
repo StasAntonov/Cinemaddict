@@ -1,6 +1,8 @@
 package com.example.cinemaddict.domain.usecase
 
-import com.example.cinemaddict.common.paging.MovPagingWrapper
+import com.example.cinemaddict.common.paging.MovPagingDataWrapper
+import com.example.cinemaddict.common.paging.MovPagingResponseWrapper
+import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.domain.repository.MovieRepository
 import com.example.cinemaddict.network.ApiResponse
 import com.example.cinemaddict.repository.response.MovieResponse
@@ -12,7 +14,7 @@ class MovieForGenreUseCase @Inject constructor(
     suspend fun getMovieForGenre(
         genre: String,
         page: Int = 1
-    ): ApiResponse<MovPagingWrapper<MovieResponse>> {
+    ): ApiResponse<MovPagingDataWrapper<FilmDiscoverData>> {
         return movieRepository.getMoviesForGenre(genre = genre, page = page)
     }
 }

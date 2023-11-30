@@ -1,6 +1,6 @@
 package com.example.cinemaddict.api
 
-import com.example.cinemaddict.common.paging.MovPagingWrapper
+import com.example.cinemaddict.common.paging.MovPagingResponseWrapper
 import com.example.cinemaddict.repository.response.GenreListResponse
 import com.example.cinemaddict.repository.response.MovieResponse
 import retrofit2.Response
@@ -17,6 +17,6 @@ interface MovieApi {
         @Query("page") page: Int,
         @Query("sort_by") sortBy: String,
         @Query("with_genres") genre: String
-    ): Response<MovPagingWrapper<MovieResponse>>
+    ): Response<MovPagingResponseWrapper<MovieResponse>>
 
 }

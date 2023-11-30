@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.cinemaddict.common.paging.MovPagingSource
+import com.example.cinemaddict.domain.entity.TrendingMovieData
 import com.example.cinemaddict.domain.usecase.home.TrendingUseCase
-import com.example.cinemaddict.repository.response.TrendingResponse
 import com.example.cinemaddict.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +16,7 @@ class HomeViewModel @Inject constructor(
     private val trendingUseCase: TrendingUseCase
 ) : BaseViewModel() {
 
-    val trendingMovieList: Flow<PagingData<TrendingResponse>> = Pager(
+    val trendingMovieList: Flow<PagingData<TrendingMovieData>> = Pager(
         config = PagingConfig(pageSize = PAGE_SIZE),
         pagingSourceFactory = {
             MovPagingSource { page ->

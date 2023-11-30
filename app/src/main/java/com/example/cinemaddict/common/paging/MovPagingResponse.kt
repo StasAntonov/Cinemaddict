@@ -2,7 +2,7 @@ package com.example.cinemaddict.common.paging
 
 import com.google.gson.annotations.SerializedName
 
-data class MovPagingWrapper<T : MovPagingResponse>(
+data class MovPagingResponseWrapper<T : MovPagingResponse>(
     @SerializedName("page") val page: Int,
     @SerializedName("results") val results: List<T>,
     @SerializedName("total_pages") val totalPages: Int,

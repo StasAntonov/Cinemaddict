@@ -7,7 +7,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemaddict.BR
+import com.google.gson.annotations.SerializedName
 
+data class MovPagingDataWrapper<T : MovPagingData>(
+    val page: Int,
+    val results: List<T>,
+    val totalPages: Int,
+    val totalResults: Int
+)
 
 abstract class MovPagingData(
     val id: Int = -1

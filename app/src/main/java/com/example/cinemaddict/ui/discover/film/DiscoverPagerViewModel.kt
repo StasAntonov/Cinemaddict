@@ -5,6 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.cinemaddict.common.paging.MovPagingSource
+import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.domain.usecase.MovieForGenreUseCase
 import com.example.cinemaddict.repository.response.MovieResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,7 @@ class DiscoverPagerViewModel @Inject constructor(
     private val movieForGenreUseCase: MovieForGenreUseCase
 ) : ViewModel() {
 
-    fun getMoviesPaging(genre: String): Flow<PagingData<MovieResponse>> {
+    fun getMoviesPaging(genre: String): Flow<PagingData<FilmDiscoverData>> {
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE),
             pagingSourceFactory = {

@@ -2,14 +2,12 @@ package com.example.cinemaddict.ui.home
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemaddict.common.paging.MovPagingAdapter
 import com.example.cinemaddict.databinding.FragmentHomeBinding
 import com.example.cinemaddict.databinding.ItemTrendingBinding
 import com.example.cinemaddict.domain.entity.LatestMovieData
 import com.example.cinemaddict.domain.entity.TrendingMovieData
-import com.example.cinemaddict.domain.mapper.toTrendingData
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import com.example.cinemaddict.util.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +42,7 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.trendingMovieList.collectLatest {
-                adapter.submitData(it.map { it.toTrendingData() })
+                adapter.submitData(it)
             }
         }
     }
