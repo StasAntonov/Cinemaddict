@@ -2,6 +2,7 @@ package com.example.cinemaddict.di
 
 import android.content.Context
 import com.example.cinemaddict.BuildConfig
+import com.example.cinemaddict.api.HomeApi
 import com.example.cinemaddict.api.MovieApi
 import com.example.cinemaddict.network.BaseInterceptor
 import com.example.cinemaddict.util.network.LiveNetworkConnection
@@ -49,6 +50,10 @@ object NetworkModule {
     fun provideMovieApi(retrofit: Retrofit): MovieApi {
         return retrofit.create(MovieApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(HomeApi::class.java)
 
     @Provides
     @Singleton

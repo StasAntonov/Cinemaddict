@@ -12,7 +12,7 @@ import com.example.cinemaddict.R
 )
 fun ImageView.loadImage(url: String?, radius: Float) {
     url?.let {
-        this.load("https://image.tmdb.org/t/p/w500/$it") {
+        this.load("https://image.tmdb.org/t/p/w1280/$it") {
             transformations(RoundedCornersTransformation(radius))
         }
     } ?: this.setImageResource(R.drawable.img)
