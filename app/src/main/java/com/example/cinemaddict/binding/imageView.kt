@@ -15,5 +15,5 @@ fun ImageView.loadImage(url: String?, radius: Float) {
         this.load("https://image.tmdb.org/t/p/w1280/$it") {
             transformations(RoundedCornersTransformation(radius))
         }
-    } ?: this.setImageResource(R.drawable.img)
+    } ?: this.setImageResource(R.drawable.ic_image_placeholder)
 }

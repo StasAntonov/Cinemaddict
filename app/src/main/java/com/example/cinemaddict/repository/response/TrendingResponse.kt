@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class TrendingResponse(
     val title: String,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @SerializedName("vote_average")
     val voteAverage: Float
 ) : Parcelable, MovPagingResponse()
