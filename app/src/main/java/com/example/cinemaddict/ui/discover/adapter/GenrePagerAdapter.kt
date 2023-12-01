@@ -16,15 +16,14 @@ import javax.inject.Inject
 
 class GenrePagerAdapter @Inject constructor(
     fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
+    lifecycle: Lifecycle,
 ) : FragmentStateAdapter(fragmentManager, lifecycle), TabLayoutMediator.TabConfigurationStrategy {
 
-    private val genres: MutableList<GenreData> = mutableListOf()
+    private var genres: List<GenreData> = emptyList()
 
-    fun setGenres(genresList: List<GenreData>) {
-        genres.clear()
-        genres.addAll(genresList)
-        notifyDataSetChanged()
+    fun setGenres(newGenres: List<GenreData>) {
+        genres = newGenres
+        notifyDataSetChanged() // TODO improve
     }
 
     override fun getItemCount(): Int {

@@ -19,10 +19,14 @@ import kotlinx.coroutines.launch
 class DiscoverPagerFragment : BaseFragment<FragmentFilmBinding>(FragmentFilmBinding::inflate) {
 
     private var genre: String? = null
-    private val viewModel: DiscoverPagerViewModel by viewModels(ownerProducer = { requireParentFragment() })
+    private val discoverPagerViewModel: DiscoverPagerViewModel by viewModels()
 
     private val filmAdapter: MovPagingAdapter<FilmDiscoverData, ItemDiscoverScreenBinding> by lazy {
         MovPagingAdapter(ItemDiscoverScreenBinding::inflate)
+    }
+
+    private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
+        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     override fun initViews() {
@@ -31,17 +35,15 @@ class DiscoverPagerFragment : BaseFragment<FragmentFilmBinding>(FragmentFilmBind
 
         binding.rvList.apply {
             genre?.let {
-                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                layoutManager = staggeredGridLayoutManager
                 adapter = filmAdapter
+                discoverPagerViewModel.setGenre(it)
             }
         }
 
-        genre?.let {
-
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getMoviesPaging(it).collectLatest { list ->
-                    filmAdapter.submitData(list.map { g -> g.toFilmDiscoverData() })
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            discoverPagerViewModel.dataFilm.collectLatest { list ->
+                filmAdapter.submitData(list.map { g -> g.toFilmDiscoverData() })
             }
         }
 
@@ -51,9 +53,10 @@ class DiscoverPagerFragment : BaseFragment<FragmentFilmBinding>(FragmentFilmBind
         private const val ARG_GENRE = "genreId"
         fun newInstance(genre: String): DiscoverPagerFragment {
             val fragment = DiscoverPagerFragment()
-            val args = Bundle()
-            args.putString(ARG_GENRE, genre)
-            fragment.arguments = args
+            fragment.arguments = Bundle().apply {
+                putString(ARG_GENRE, genre)
+            }
+
             return fragment
         }
     }

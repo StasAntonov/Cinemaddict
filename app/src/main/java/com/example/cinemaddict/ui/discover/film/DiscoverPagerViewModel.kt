@@ -1,9 +1,11 @@
 package com.example.cinemaddict.ui.discover.film
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.cinemaddict.common.paging.MovPagingSource
 import com.example.cinemaddict.domain.usecase.MovieForGenreUseCase
 import com.example.cinemaddict.repository.response.MovieResponse
@@ -16,15 +18,25 @@ class DiscoverPagerViewModel @Inject constructor(
     private val movieForGenreUseCase: MovieForGenreUseCase
 ) : ViewModel() {
 
-    fun getMoviesPaging(genre: String): Flow<PagingData<MovieResponse>> {
+    private var genre: String? = null
+
+    val dataFilm: Flow<PagingData<MovieResponse>> by lazy {
+        loadData()
+    }
+
+    private fun loadData(): Flow<PagingData<MovieResponse>> {
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE),
             pagingSourceFactory = {
                 MovPagingSource { page ->
-                    movieForGenreUseCase.getMovieForGenre(genre = genre, page)
+                    movieForGenreUseCase.getMovieForGenre(genre ?: "", page)
                 }
             }
-        ).flow
+        ).flow.cachedIn(viewModelScope)
+    }
+
+    fun setGenre(genre: String) {
+        this.genre = genre
     }
 
     companion object {

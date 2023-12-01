@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewData"
             type="com.example.cinemaddict.domain.entity.FilmDiscoverData" />
@@ -10,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="@dimen/extra_small_padding"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -35,7 +37,8 @@
             android:textAppearance="@style/Text.Title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_image"
-            android:text="@{viewData.title}" />
+            app:setFormattedText="@{viewData}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
