@@ -20,7 +20,10 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
     override val viewModel: HomeViewModel by viewModels()
 
     private val adapter: MovPagingAdapter<TrendingMovieData, ItemTrendingBinding> by lazy {
-        MovPagingAdapter(ItemTrendingBinding::inflate)
+        MovPagingAdapter(
+            bindingInflater = ItemTrendingBinding::inflate,
+            onClickListener = ::navigateToDetailScreen
+        )
     }
 
     override fun initViews() = with(binding) {
@@ -43,6 +46,12 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
             viewModel.trendingMovieList.collectLatest {
                 adapter.submitData(it)
             }
+        }
+    }
+
+    private fun navigateToDetailScreen(position: Int) {
+        adapter.getItemByPosition(position)?.let {
+            navigate(HomeFragmentDirections.showDetails())
         }
     }
 }

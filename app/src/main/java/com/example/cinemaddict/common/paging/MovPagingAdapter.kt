@@ -7,7 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemaddict.BR
-import com.google.gson.annotations.SerializedName
+
+typealias MovPagingClickListener = (Int) -> Unit
 
 data class MovPagingDataWrapper<T : MovPagingData>(
     val page: Int,
@@ -17,11 +18,14 @@ data class MovPagingDataWrapper<T : MovPagingData>(
 )
 
 abstract class MovPagingData(
-    val id: Int = -1
+    val id: Int = -1,
+    var position: Int = -1,
+    var onClickListener: MovPagingClickListener? = null
 )
 
 class MovPagingAdapter<T : MovPagingData, VDB : ViewDataBinding>(
-    private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> VDB
+    private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> VDB,
+    private val onClickListener: MovPagingClickListener? = null
 ) : PagingDataAdapter<T, MovPagingAdapter.MovViewHolder>(MovDiffUtil()) {
 
     class MovDiffUtil<T : MovPagingData> : DiffUtil.ItemCallback<T>() {
@@ -42,6 +46,8 @@ class MovPagingAdapter<T : MovPagingData, VDB : ViewDataBinding>(
 
     override fun onBindViewHolder(holder: MovViewHolder, position: Int) {
         getItem(position)?.let { item ->
+            item.position = position
+            item.onClickListener = onClickListener
             holder.bind(item)
         }
     }
@@ -50,4 +56,6 @@ class MovPagingAdapter<T : MovPagingData, VDB : ViewDataBinding>(
         val binding = bindingInflater(LayoutInflater.from(parent.context), parent, false)
         return MovViewHolder(binding)
     }
+
+    fun getItemByPosition(position: Int): T? = getItem(position)
 }
