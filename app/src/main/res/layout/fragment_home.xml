@@ -16,6 +16,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -64,16 +65,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/inc_latest" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.example.cinemaddict.component.CenteredRecyclerView
                         android:id="@+id/rv_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x_large_margin"
                         android:layout_marginBottom="@dimen/xx_big_margin"
                         android:clipToPadding="false"
-                        android:paddingEnd="@dimen/home_trending_padding_end"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:startShrink="24dp"
+                        app:endShrink="34dp"
+                        app:shrinkRatio="0.869"
+                        android:paddingStart="@dimen/home_trending_padding_start"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

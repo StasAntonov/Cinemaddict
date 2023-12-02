@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,6 +11,9 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
 }
+val apiKeysFile = rootProject.file("local.properties")
+val apiKeys = Properties()
+apiKeys.load(FileInputStream(apiKeysFile))
 
 android {
     namespace = "com.example.cinemaddict"
@@ -22,8 +28,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        //TODO add base url
-        buildConfigField("String", "BASE_URL", "\"https://google.com\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
+
+        buildConfigField("String", "ACCESS_KEY", apiKeys["ACCESS_KEY"] as String)
     }
 
     buildTypes {
@@ -67,6 +74,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.code.gson:gson:2.10")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     // Coil
     implementation("io.coil-kt:coil:2.4.0")
@@ -99,7 +107,4 @@ dependencies {
 
     // Blur
     implementation("jp.wasabeef:glide-transformations:4.3.0")
-
-    // Carousel
-    implementation("com.github.sparrow007:carouselrecyclerview:1.2.6")
 }
