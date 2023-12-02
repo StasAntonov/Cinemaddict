@@ -4,9 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cinemaddict.network.ApiResponse
 
-private typealias PagingCallback<T> = suspend (Int) -> ApiResponse<MovPagingWrapper<T>>
+private typealias PagingCallback<T> = suspend (Int) -> ApiResponse<MovPagingDataWrapper<T>>
 
-class MovPagingSource<T : MovPagingResponse>(
+class MovPagingSource<T : MovPagingData>(
     private val callback: PagingCallback<T>
 ) : PagingSource<Int, T>() {
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {

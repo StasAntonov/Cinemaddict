@@ -3,13 +3,11 @@ package com.example.cinemaddict.ui.discover.film
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cinemaddict.common.paging.MovPagingAdapter
 import com.example.cinemaddict.databinding.FragmentFilmBinding
 import com.example.cinemaddict.databinding.ItemDiscoverScreenBinding
 import com.example.cinemaddict.domain.entity.FilmDiscoverData
-import com.example.cinemaddict.domain.mapper.toFilmDiscoverData
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -43,7 +41,7 @@ class DiscoverPagerFragment : BaseUiFragment<FragmentFilmBinding>(FragmentFilmBi
 
         viewLifecycleOwner.lifecycleScope.launch {
             discoverPagerViewModel.dataFilm.collectLatest { list ->
-                filmAdapter.submitData(list.map { g -> g.toFilmDiscoverData() })
+                filmAdapter.submitData(list)
             }
         }
 
