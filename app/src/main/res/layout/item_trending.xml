@@ -24,27 +24,37 @@
             app:loadImage="@{viewData.imageUrl}"
             tools:srcCompat="@drawable/marv_1" />
 
-<!--        <com.example.cinemaddict.component.BlurBackgroundLayout-->
-<!--            android:id="@+id/bv_title"-->
-<!--            style="@style/Blur"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom|center"-->
-<!--            android:layout_margin="18dp"-->
-<!--            android:paddingHorizontal="12dp"-->
-<!--            android:paddingVertical="33dp">-->
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Title"
+            android:layout_width="200dp"
+            android:text="@{viewData.testText}"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="18dp"
+            tools:text="Hello world to the best one and after that" />
 
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                style="@style/Text.Title"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@{viewData.title}"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                tools:text="Avengers: Endgame" />-->
+        <!--        <com.example.cinemaddict.component.BlurBackgroundLayout-->
+        <!--            android:id="@+id/bv_title"-->
+        <!--            style="@style/Blur"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="bottom|center"-->
+        <!--            android:layout_margin="18dp"-->
+        <!--            android:paddingHorizontal="12dp"-->
+        <!--            android:paddingVertical="33dp">-->
 
-<!--        </com.example.cinemaddict.component.BlurBackgroundLayout>-->
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                style="@style/Text.Title"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="@{viewData.title}"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                tools:text="Avengers: Endgame" />-->
+
+        <!--        </com.example.cinemaddict.component.BlurBackgroundLayout>-->
     </FrameLayout>
 </layout>

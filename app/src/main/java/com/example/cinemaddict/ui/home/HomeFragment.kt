@@ -2,6 +2,8 @@ package com.example.cinemaddict.ui.home
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemaddict.common.paging.MovPagingAdapter
 import com.example.cinemaddict.databinding.FragmentHomeBinding
@@ -11,6 +13,7 @@ import com.example.cinemaddict.domain.entity.TrendingMovieData
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import com.example.cinemaddict.util.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -26,8 +29,23 @@ class HomeFragment : BaseUiFragment<FragmentHomeBinding>(FragmentHomeBinding::in
         )
     }
 
+    private val loadStateListener: (CombinedLoadStates) -> Unit by lazy {
+        {
+            if (it.refresh is LoadState.NotLoading) {
+                binding.rvList.scrollToPosition(0)
+                adapter.removeLoadStateListener(loadStateListener)
+            }
+        }
+    }
+
     override fun initViews() = with(binding) {
         super.initViews()
+
+        onRefresh(Dispatchers.Main) {
+            adapter.refresh()
+            adapter.addLoadStateListener(loadStateListener)
+        }
+
         incLatest.viewData =
             LatestMovieData(
                 "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",

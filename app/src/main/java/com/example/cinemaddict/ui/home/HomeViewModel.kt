@@ -1,6 +1,5 @@
 package com.example.cinemaddict.ui.home
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

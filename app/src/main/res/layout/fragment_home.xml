@@ -33,7 +33,8 @@
                         android:layout_marginTop="@dimen/xxx_large_margin"
                         android:text="@string/home_stream"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:useGradient="true" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/Text.Header"
@@ -72,14 +73,14 @@
                         android:layout_marginTop="@dimen/x_large_margin"
                         android:layout_marginBottom="@dimen/xx_big_margin"
                         android:clipToPadding="false"
-                        app:startShrink="24dp"
-                        app:endShrink="34dp"
-                        app:shrinkRatio="0.869"
                         android:paddingStart="@dimen/home_trending_padding_start"
+                        app:endShrink="@dimen/large_half_margin"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_trending"
+                        app:shrinkRatio="0.869"
+                        app:startShrink="@dimen/xx_big_margin"
                         tools:listitem="@layout/item_trending" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

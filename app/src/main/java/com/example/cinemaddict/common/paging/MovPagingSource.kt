@@ -9,11 +9,7 @@ private typealias PagingCallback<T> = suspend (Int) -> ApiResponse<MovPagingData
 class MovPagingSource<T : MovPagingData>(
     private val callback: PagingCallback<T>
 ) : PagingSource<Int, T>() {
-    override fun getRefreshKey(state: PagingState<Int, T>): Int? {
-        val anchorPosition = state.anchorPosition ?: return null
-        val page = state.closestPageToPosition(anchorPosition) ?: return null
-        return page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
-    }
+    override fun getRefreshKey(state: PagingState<Int, T>): Int = 1
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         val page = params.key ?: INIT_PAGE

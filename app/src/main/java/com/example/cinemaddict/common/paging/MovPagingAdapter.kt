@@ -18,7 +18,7 @@ data class MovPagingDataWrapper<T : MovPagingData>(
 )
 
 abstract class MovPagingData(
-    val id: Int = -1,
+    open val id: Int = -1,
     var position: Int = -1,
     var onClickListener: MovPagingClickListener? = null
 )

@@ -12,4 +12,4 @@ data class TrendingResponse(
     val backdropPath: String?,
     @SerializedName("vote_average")
     val voteAverage: Float
-) : Parcelable, MovPagingResponse()
+) : MovPagingResponse(), Parcelable
