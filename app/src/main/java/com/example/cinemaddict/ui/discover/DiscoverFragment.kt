@@ -7,22 +7,31 @@ import com.example.cinemaddict.ui.base.BaseUiFragment
 import com.example.cinemaddict.ui.discover.adapter.GenrePagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 
 @AndroidEntryPoint
 class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscoverBinding::inflate) {
 
     private lateinit var adapter: GenrePagerAdapter
 
-    private val discoverViewModel: DiscoverViewModel by viewModels()
+    override val viewModel: DiscoverViewModel by viewModels()
 
     override fun initViews() {
         super.initViews()
         adapter = GenrePagerAdapter(childFragmentManager, lifecycle)
     }
 
+    override fun initListeners() {
+        super.initListeners()
+        onRefresh(Dispatchers.Main) {
+            adapter = GenrePagerAdapter(childFragmentManager, lifecycle)
+            viewModel.refresh()
+        }
+    }
+
     override fun initObservers() {
         super.initObservers()
-        discoverViewModel.genre.observe(viewLifecycleOwner) {
+        viewModel.genre.observe(viewLifecycleOwner) {
             adapter.setGenres(it)
             binding.vpPager.adapter = adapter
 
@@ -34,7 +43,7 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
             ).attach()
         }
 
-        discoverViewModel.error.observe(viewLifecycleOwner) {
+        viewModel.error.observe(viewLifecycleOwner) {
             toast(it)
         }
     }

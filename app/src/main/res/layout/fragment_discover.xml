@@ -62,12 +62,20 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_pager"
+        <com.simform.refresh.SSPullToRefreshLayout
+            android:id="@+id/pull_to_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </com.simform.refresh.SSPullToRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </layout>

@@ -1,12 +1,12 @@
 package com.example.cinemaddict.ui.discover
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cinemaddict.domain.entity.GenreData
 import com.example.cinemaddict.domain.mapper.toGenreData
 import com.example.cinemaddict.domain.usecase.GenreUseCase
 import com.example.cinemaddict.network.ApiResponse
+import com.example.cinemaddict.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DiscoverViewModel @Inject constructor(
     private val genreUseCase: GenreUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     val genre = MutableLiveData<List<GenreData>>()
     val error = MutableLiveData<String>()
@@ -39,6 +39,10 @@ class DiscoverViewModel @Inject constructor(
             }
         }
 
+    }
+
+    fun refresh() {
+        getGenres()
     }
 
 }

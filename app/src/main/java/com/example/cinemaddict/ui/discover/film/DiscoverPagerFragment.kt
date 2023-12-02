@@ -10,13 +10,13 @@ import com.example.cinemaddict.databinding.FragmentFilmBinding
 import com.example.cinemaddict.databinding.ItemDiscoverScreenBinding
 import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.domain.mapper.toFilmDiscoverData
-import com.example.cinemaddict.ui.base.BaseFragment
+import com.example.cinemaddict.ui.base.BaseUiFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DiscoverPagerFragment : BaseFragment<FragmentFilmBinding>(FragmentFilmBinding::inflate) {
+class DiscoverPagerFragment : BaseUiFragment<FragmentFilmBinding>(FragmentFilmBinding::inflate) {
 
     private var genre: String? = null
     private val discoverPagerViewModel: DiscoverPagerViewModel by viewModels()

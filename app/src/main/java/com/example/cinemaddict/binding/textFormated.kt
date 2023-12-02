@@ -8,11 +8,14 @@ import com.example.cinemaddict.domain.entity.FilmDiscoverData
 @BindingAdapter("setFormattedText")
 fun setFormattedText(textView: TextView, viewData: FilmDiscoverData) {
 
-    val formattedText: String = if (viewData.releaseDate == null) {
-        viewData.title
-    } else {
-        "${viewData.title} (${viewData.releaseDate.take(4)})"
-    }
+    viewData.releaseDate.let {
 
-    textView.text = formattedText
+        val formattedText: String = if (it == null) {
+            viewData.title
+        } else {
+            "${viewData.title} (${it.take(4)})"
+        }
+
+        textView.text = formattedText
+    }
 }
