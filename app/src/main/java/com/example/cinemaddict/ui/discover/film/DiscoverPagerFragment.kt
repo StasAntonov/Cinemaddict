@@ -9,6 +9,7 @@ import com.example.cinemaddict.databinding.FragmentFilmBinding
 import com.example.cinemaddict.databinding.ItemDiscoverScreenBinding
 import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.ui.base.BaseUiFragment
+import com.example.cinemaddict.ui.discover.DiscoverFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -20,11 +21,10 @@ class DiscoverPagerFragment : BaseUiFragment<FragmentFilmBinding>(FragmentFilmBi
     private val discoverPagerViewModel: DiscoverPagerViewModel by viewModels()
 
     private val filmAdapter: MovPagingAdapter<FilmDiscoverData, ItemDiscoverScreenBinding> by lazy {
-        MovPagingAdapter(ItemDiscoverScreenBinding::inflate)
-    }
-
-    private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
-        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        MovPagingAdapter(
+            bindingInflater = ItemDiscoverScreenBinding::inflate,
+            onClickListener = ::navigateToDetailScreen
+        )
     }
 
     override fun initViews() {
@@ -33,7 +33,7 @@ class DiscoverPagerFragment : BaseUiFragment<FragmentFilmBinding>(FragmentFilmBi
 
         binding.rvList.apply {
             genre?.let {
-                layoutManager = staggeredGridLayoutManager
+                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                 adapter = filmAdapter
                 discoverPagerViewModel.setGenre(it)
             }
@@ -44,7 +44,12 @@ class DiscoverPagerFragment : BaseUiFragment<FragmentFilmBinding>(FragmentFilmBi
                 filmAdapter.submitData(list)
             }
         }
+    }
 
+    private fun navigateToDetailScreen(position: Int) {
+        filmAdapter.getItemByPosition(position)?.let {
+            navigate(DiscoverFragmentDirections.showDetails())
+        }
     }
 
     companion object {

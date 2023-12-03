@@ -16,15 +16,9 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
 
     override val viewModel: DiscoverViewModel by viewModels()
 
-    override fun initViews() {
-        super.initViews()
-        adapter = GenrePagerAdapter(childFragmentManager, lifecycle)
-    }
-
     override fun initListeners() {
         super.initListeners()
         onRefresh(Dispatchers.Main) {
-            adapter = GenrePagerAdapter(childFragmentManager, lifecycle)
             viewModel.refresh()
         }
     }
@@ -32,6 +26,7 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
     override fun initObservers() {
         super.initObservers()
         viewModel.genre.observe(viewLifecycleOwner) {
+            adapter = GenrePagerAdapter(childFragmentManager, lifecycle)
             adapter.setGenres(it)
             binding.vpPager.adapter = adapter
 
