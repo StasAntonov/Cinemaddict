@@ -29,7 +29,7 @@ class DiscoverPagerViewModel @Inject constructor(
             config = PagingConfig(pageSize = PAGE_SIZE),
             pagingSourceFactory = {
                 MovPagingSource { page ->
-                    movieForGenreUseCase.getMovieForGenre(genre ?: "", page)
+                    movieForGenreUseCase.getMovieForGenre(genre.orEmpty(), page)
                 }
             }
         ).flow.cachedIn(viewModelScope)

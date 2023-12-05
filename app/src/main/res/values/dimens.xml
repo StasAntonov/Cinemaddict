@@ -66,7 +66,7 @@
     <dimen name="tab_height">28dp</dimen>
     <dimen name="cursor_width">2dp</dimen>
 
-    <dimen name="progress_view_size">80dp</dimen>
+    <dimen name="progress_view_size">40dp</dimen>
     <dimen name="pull_to_refresh_height">100dp</dimen>
 
     <dimen name="item_latest_image_height">191dp</dimen>

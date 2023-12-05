@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <FrameLayout
         android:paddingTop="@dimen/discover_screen_recycler_top_padding"
         android:paddingBottom="@dimen/discover_screen_recycler_padding"
         android:paddingHorizontal="@dimen/discover_screen_recycler_padding"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
@@ -16,5 +15,11 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_discover_screen" />
 
-    </LinearLayout>
+        <com.example.cinemaddict.component.ProgressView
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
 </layout>
