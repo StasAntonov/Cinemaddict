@@ -9,20 +9,29 @@ class CustomTabLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TabLayout(context, attrs, defStyleAttr) {
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    init {
         addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: Tab?) {
-                tab?.customView?.findViewById<GradientTextView>(R.id.tv_custom_tab_item)
-                    ?.setTextColorGradient()
+                setTabColor(tab, true)
             }
 
             override fun onTabUnselected(tab: Tab?) {
-                tab?.customView?.findViewById<GradientTextView>(R.id.tv_custom_tab_item)?.setColor()
+                setTabColor(tab, false)
             }
 
             override fun onTabReselected(tab: Tab?) {}
         })
     }
 
+    private fun setTabColor(tab: Tab?, isSelected: Boolean) {
+        if (tab?.customView != null) {
+            tab.customView?.findViewById<GradientTextView>(R.id.tv_custom_tab_item)?.let {
+                if (isSelected) {
+                    it.enableGradient()
+                } else {
+                    it.disableGradient()
+                }
+            }
+        }
+    }
 }

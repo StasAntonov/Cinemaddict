@@ -7,7 +7,7 @@
     app:startColor="@color/gradient_start_color"
     app:endColor="@color/gradient_end_color"
     tools:text="Text"
-    app:useGradient="false"
+    android:textColor="@color/primary_text"
     android:gravity="fill"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

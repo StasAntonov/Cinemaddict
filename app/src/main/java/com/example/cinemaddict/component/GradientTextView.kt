@@ -1,7 +1,6 @@
 package com.example.cinemaddict.component
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.util.AttributeSet
@@ -43,34 +42,34 @@ class GradientTextView @JvmOverloads constructor(
             useGradient = it.getBoolean(R.styleable.GradientTextView_useGradient, useGradient)
             it.recycle()
         }
-    }
-
-    private fun setShader() {
-        paint.shader = linearGradient
-    }
-
-    override fun onLayout(
-        changed: Boolean, left: Int, top: Int, right: Int,
-        bottom: Int
-    ) {
-        super.onLayout(changed, left, top, right, bottom)
-
-        if (useGradient && paint.shader != linearGradient) {
-            setShader()
-            paint.shader = linearGradient
-        } else if (!useGradient) {
-            setColor()
+        if (useGradient) {
+            enableGradient()
         }
     }
 
-    fun setTextColorGradient() {
+    fun enableGradient() {
         useGradient = true
-        setShader()
+        applyGradient()
     }
 
-    fun setColor() {
-        setTextColor(Color.WHITE)
+    fun disableGradient() {
         useGradient = false
         paint.shader = null
+        setTextColor(ContextCompat.getColor(context, R.color.primary_text))
+        invalidate()
+    }
+
+    private fun applyGradient() {
+        if (useGradient) {
+            paint.shader = linearGradient
+        }
+        invalidate()
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        if (useGradient) {
+            applyGradient()
+        }
     }
 }
