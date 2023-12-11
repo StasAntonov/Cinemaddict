@@ -1,4 +1,4 @@
-package com.example.cinemaddict.ui.discover.film
+package com.example.cinemaddict.ui.discover.discover_pager
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels

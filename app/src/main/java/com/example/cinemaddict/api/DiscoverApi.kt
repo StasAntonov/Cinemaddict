@@ -12,7 +12,7 @@ interface DiscoverApi {
     @GET(ApiEndpoint.GET_GENRES)
     suspend fun getGenre(): Response<GenreListResponse>
 
-    @GET("3/discover/movie")
+    @GET(ApiEndpoint.GET_MOVIE_FOR_GENRES)
     suspend fun getMoviesForGenre(
         @Query(Pagination.PAGE) page: Int,
         @Query(ApiQuery.SORTED) sortBy: String,

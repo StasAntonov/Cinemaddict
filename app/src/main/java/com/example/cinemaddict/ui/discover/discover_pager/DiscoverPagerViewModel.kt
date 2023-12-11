@@ -1,4 +1,4 @@
-package com.example.cinemaddict.ui.discover.film
+package com.example.cinemaddict.ui.discover.discover_pager
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

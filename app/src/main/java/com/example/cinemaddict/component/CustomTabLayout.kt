@@ -24,14 +24,12 @@ class CustomTabLayout @JvmOverloads constructor(
     }
 
     private fun setTabColor(tab: Tab?, isSelected: Boolean) {
-        if (tab?.customView != null) {
-            tab.customView?.findViewById<GradientTextView>(R.id.tv_custom_tab_item)?.let {
+            tab?.customView?.findViewById<GradientTextView>(R.id.tv_custom_tab_item)?.let {
                 if (isSelected) {
                     it.enableGradient()
                 } else {
                     it.disableGradient()
                 }
             }
-        }
     }
 }

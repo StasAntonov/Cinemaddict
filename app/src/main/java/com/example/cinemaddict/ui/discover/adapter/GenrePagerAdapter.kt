@@ -9,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cinemaddict.R
 import com.example.cinemaddict.component.GradientTextView
 import com.example.cinemaddict.domain.entity.GenreData
-import com.example.cinemaddict.ui.discover.film.DiscoverPagerFragment
+import com.example.cinemaddict.ui.discover.discover_pager.DiscoverPagerFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
@@ -23,7 +23,6 @@ class GenrePagerAdapter @Inject constructor(
 
     fun setGenres(newGenres: List<GenreData>) {
         genres = newGenres
-        notifyDataSetChanged() // TODO improve
     }
 
     override fun getItemCount(): Int {

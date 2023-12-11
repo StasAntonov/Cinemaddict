@@ -1,5 +1,6 @@
 package com.example.cinemaddict.ui.discover
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cinemaddict.domain.entity.GenreData
@@ -16,8 +17,11 @@ class DiscoverViewModel @Inject constructor(
     private val genreUseCase: GenreUseCase
 ) : BaseViewModel() {
 
-    val genre = MutableLiveData<List<GenreData>>()
-    val error = MutableLiveData<String>()
+    private var _genre = MutableLiveData<List<GenreData>>()
+    val genre: LiveData<List<GenreData>> = _genre
+
+    private var _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
     init {
         getGenres()
@@ -29,11 +33,11 @@ class DiscoverViewModel @Inject constructor(
             genreUseCase.getGenres().let {
                 when (it) {
                     is ApiResponse.Error -> {
-                        error.postValue(it.throwable.message.toString())
+                        _error.postValue(it.throwable.message.toString())
                     }
 
                     is ApiResponse.Success -> {
-                        genre.postValue(it.data.genres.map { g -> g.toGenreData() })
+                        _genre.postValue(it.data.genres.map { g -> g.toGenreData() })
                     }
                 }
             }
