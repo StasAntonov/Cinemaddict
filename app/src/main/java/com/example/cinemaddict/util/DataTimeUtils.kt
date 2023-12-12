@@ -25,12 +25,10 @@ object DateTimeUtils {
     }
 
     fun toLocalDate(dateString: String?): LocalDate? {
-        return if (dateString != null) {
+        return if (!dateString.isNullOrEmpty()) {
             val serverDateFormat = DateTimeFormatter.ofPattern(DateTimePattern.DEFAULT.value)
             LocalDate.parse(dateString, serverDateFormat)
-        } else {
-            null
-        }
+        } else null
     }
 }
 
