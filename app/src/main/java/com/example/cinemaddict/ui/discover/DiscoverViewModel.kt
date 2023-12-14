@@ -47,23 +47,26 @@ class DiscoverViewModel @Inject constructor(
 
     fun getMovie(title: String) {
         if (title != "") {
-            viewModelScope.launch {
-                Pager(
-                    config = PagingConfig(pageSize = 20),
-                    pagingSourceFactory = {
-                        MovPagingSource { page ->
-                            movieUseCase.getMovieForTitle(
-                                page = page,
-                                query = title
-                            )
+            if (title != lastQuery) {
+                viewModelScope.launch {
+                    Pager(
+                        config = PagingConfig(pageSize = PAGE_SIZE),
+                        pagingSourceFactory = {
+                            MovPagingSource { page ->
+                                movieUseCase.getMovieForTitle(
+                                    page = page,
+                                    query = title
+                                )
+                            }
                         }
-                    }
-                ).flow
-                    .cachedIn(viewModelScope)
-                    .collectLatest { newData ->
-                        _dataFilm.value = newData
-                    }
-            }
+                    ).flow
+                        .cachedIn(viewModelScope)
+                        .collectLatest { newData ->
+                            _dataFilm.value = newData
+                        }
+                }
+            } else return
+
         } else {
             _dataFilm.value = PagingData.empty()
         }
@@ -72,7 +75,6 @@ class DiscoverViewModel @Inject constructor(
 
     private fun getGenres() {
         viewModelScope.launch {
-
             genreUseCase.getGenres().let {
                 when (it) {
                     is ApiResponse.Error -> {
@@ -85,7 +87,6 @@ class DiscoverViewModel @Inject constructor(
                 }
             }
         }
-
     }
 
     fun refresh() {
@@ -93,6 +94,10 @@ class DiscoverViewModel @Inject constructor(
         if (lastQuery.isNotEmpty()) {
             getMovie(lastQuery)
         }
+    }
+
+    companion object {
+        private const val PAGE_SIZE = 20
     }
 
 }
