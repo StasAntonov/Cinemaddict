@@ -78,6 +78,13 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         <com.simform.refresh.SSPullToRefreshLayout
             android:id="@+id/pull_to_refresh"
             android:layout_width="match_parent"
@@ -90,15 +97,8 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
         </com.simform.refresh.SSPullToRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </layout>
