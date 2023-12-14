@@ -37,4 +37,19 @@ class MovieRepositoryImpl @Inject constructor(
             }
         }
 
+    override suspend fun getMovieForTitle(
+        page: Int,
+        query: String
+    ): ApiResponse<MovPagingDataWrapper<FilmDiscoverData>> =
+        request {
+            discoverApi.getMovieForTitle(
+                page = page,
+                query = query
+            )
+        }.map { wrapper ->
+            wrapper.toDataWrapper { responseList ->
+                responseList.map { it.toFilmDiscoverData() }
+            }
+        }
+
 }
