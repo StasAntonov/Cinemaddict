@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.cinemaddict.ui.discover.DiscoverViewModel" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,15 +43,24 @@
                         android:layout_marginTop="@dimen/large_margin"
                         android:text="@string/find_movies_tv_series_and_more" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_search"
-                        style="@style/SearchEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/search_view_height"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti_layout"
+                        style="@style/SearchLayout"
                         android:layout_marginStart="@dimen/xx_big_margin"
                         android:layout_marginTop="@dimen/x_big_margin"
                         android:layout_marginEnd="@dimen/xx_big_margin"
-                        android:hint="@string/search" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ti_search"
+                            style="@style/SearchEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/search_view_height"
+                            android:text="@={viewModel.searchText}"
+                            android:hint="@string/search" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.example.cinemaddict.component.CustomTabLayout
                         android:id="@+id/tl_genre"
@@ -73,6 +89,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </com.simform.refresh.SSPullToRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
