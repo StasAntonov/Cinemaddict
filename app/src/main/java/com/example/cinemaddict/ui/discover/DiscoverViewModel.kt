@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cinemaddict.domain.entity.GenreData
-import com.example.cinemaddict.domain.mapper.toGenreData
 import com.example.cinemaddict.domain.usecase.GenreUseCase
 import com.example.cinemaddict.network.ApiResponse
 import com.example.cinemaddict.ui.base.BaseViewModel
@@ -29,7 +28,6 @@ class DiscoverViewModel @Inject constructor(
 
     private fun getGenres() {
         viewModelScope.launch {
-
             genreUseCase.getGenres().let {
                 when (it) {
                     is ApiResponse.Error -> {
@@ -37,12 +35,11 @@ class DiscoverViewModel @Inject constructor(
                     }
 
                     is ApiResponse.Success -> {
-                        _genre.postValue(it.data.genres.map { g -> g.toGenreData() })
+                        _genre.postValue(it.data.genres)
                     }
                 }
             }
         }
-
     }
 
     fun refresh() {

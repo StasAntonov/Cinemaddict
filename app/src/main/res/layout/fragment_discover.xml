@@ -6,8 +6,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@color/background"
-        tools:context=".ui.discover.DiscoverFragment">
+        tools:background="@color/background">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -76,6 +75,5 @@
         </com.simform.refresh.SSPullToRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </layout>
