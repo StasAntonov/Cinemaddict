@@ -14,7 +14,7 @@
     <color name="format_text">#E0E0E0</color>
 
     <!--    gradient-->
-    <color name="gradient_start_color">#EF2D1A</color>
+    <color name="gradient_start_color">#F5543C</color>
     <color name="gradient_end_color">#FF8F71</color>
     <color name="border_gradient_start_color">#40FFFFFF</color>
 
@@ -27,4 +27,7 @@
     <color name="cursor_color">#FF8F71</color>
     <color name="search_view_background">#211F30</color>
     <color name="hint">#BBBBBB</color>
+
+    <!--    search view-->
+    <color name="indicator_color">#FF8F71</color>
 </resources>

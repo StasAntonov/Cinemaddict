@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.example.cinemaddict.component.GradientTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_custom_tab_item"
+    app:startColor="@color/gradient_start_color"
+    app:endColor="@color/gradient_end_color"
+    tools:text="Text"
+    android:textColor="@color/primary_text"
+    android:gravity="fill"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="0dp" />

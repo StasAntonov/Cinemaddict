@@ -3,11 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@color/background"
-        tools:context=".ui.discover.DiscoverFragment">
+        tools:background="@color/background">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:outlineProvider="none">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title"
+                        style="@style/Text.Header.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/xx_big_margin"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:text="@string/find_movies_tv_series_and_more" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_search"
+                        style="@style/SearchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/search_view_height"
+                        android:layout_marginStart="@dimen/xx_big_margin"
+                        android:layout_marginTop="@dimen/x_big_margin"
+                        android:layout_marginEnd="@dimen/xx_big_margin"
+                        android:hint="@string/search" />
+
+                    <com.example.cinemaddict.component.CustomTabLayout
+                        android:id="@+id/tl_genre"
+                        style="@style/TabStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/tab_height"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/xx_big_margin"
+                        android:clipToPadding="false"
+                        app:layout_collapseMode="pin" />
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <com.simform.refresh.SSPullToRefreshLayout
             android:id="@+id/pull_to_refresh"
@@ -15,26 +67,13 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_search"
-                    style="@style/SearchEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/search_view_height"
-                    android:layout_marginStart="@dimen/xx_big_margin"
-                    android:layout_marginTop="@dimen/x_big_margin"
-                    android:layout_marginEnd="@dimen/xx_big_margin"
-                    android:hint="@string/search"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </com.simform.refresh.SSPullToRefreshLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

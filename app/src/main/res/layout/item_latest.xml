@@ -2,7 +2,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewData"
             type="com.example.cinemaddict.domain.entity.LatestMovieData" />
