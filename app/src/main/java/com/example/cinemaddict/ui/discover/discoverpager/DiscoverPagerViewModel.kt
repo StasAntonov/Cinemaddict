@@ -1,4 +1,4 @@
-package com.example.cinemaddict.ui.discover.discover_pager
+package com.example.cinemaddict.ui.discover.discoverpager
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,20 +20,15 @@ class DiscoverPagerViewModel @Inject constructor(
 
     private var genre: String? = null
 
-    val dataFilm: Flow<PagingData<FilmDiscoverData>> by lazy {
-        loadData()
-    }
-
-    private fun loadData(): Flow<PagingData<FilmDiscoverData>> {
-        return Pager(
-            config = PagingConfig(pageSize = PAGE_SIZE),
-            pagingSourceFactory = {
-                MovPagingSource { page ->
-                    movieForGenreUseCase.getMovieForGenre(genre.orEmpty(), page)
-                }
+    val dataFilm: Flow<PagingData<FilmDiscoverData>> = Pager(
+        config = PagingConfig(pageSize = PAGE_SIZE),
+        pagingSourceFactory = {
+            MovPagingSource { page ->
+                movieForGenreUseCase.getMovieForGenre(genre.orEmpty(), page)
             }
-        ).flow.cachedIn(viewModelScope)
-    }
+        }
+    ).flow
+        .cachedIn(viewModelScope)
 
     fun setGenre(genre: String) {
         this.genre = genre

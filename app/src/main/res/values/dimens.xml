@@ -45,13 +45,8 @@
     <dimen name="big_lse">12sp</dimen>
 
     <!--    view radius-->
-    <dimen name="search_view_corner">20dp</dimen>
-<!--    todo-->
-    <dimen name="big_image_radius">30dp</dimen>
-    <dimen name="small_image_radius">20dp</dimen>
+    <dimen name="small_radius">20dp</dimen>
     <dimen name="big_radius">30dp</dimen>
-    <dimen name="medium_radius">20dp</dimen>
-
 
     <!--    specific size-->
     <dimen name="bottom_navigation_view_icon_size">44dp</dimen>
@@ -65,6 +60,9 @@
 
     <dimen name="tab_height">28dp</dimen>
     <dimen name="cursor_width">2dp</dimen>
+
+    <dimen name="item_discover_screen_min_height">154dp</dimen>
+    <dimen name="item_discover_screen_max_height">184dp</dimen>
 
     <dimen name="progress_view_size">40dp</dimen>
     <dimen name="pull_to_refresh_height">100dp</dimen>

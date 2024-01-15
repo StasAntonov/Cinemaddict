@@ -10,7 +10,6 @@ data class MovieResponse(
     val adult: Boolean? = null,
     @SerializedName("backdrop_path") val backdropPath: String? = null,
     @SerializedName("genre_ids") val genreIds: ArrayList<Int> = arrayListOf(),
-//    override val id: Int,
     @SerializedName("original_language") val originalLanguage: String? = null,
     @SerializedName("original_title") val originalTitle: String? = null,
     val overview: String? = null,

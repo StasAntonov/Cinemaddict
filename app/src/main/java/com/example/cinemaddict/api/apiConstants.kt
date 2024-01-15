@@ -1,10 +1,10 @@
 package com.example.cinemaddict.api
 
 object ApiEndpoint {
-    const val GET_TRENDING = "/3/trending/movie/{${TimeWindow.NAME}}"
-    const val GET_GENRES = "3/genre/movie/list"
-    const val GET_MOVIE_FOR_GENRES = "3/discover/movie"
-    const val GET_MOVIE_FOR_TITLE = "3/search/movie"
+    const val GET_TRENDING = "trending/movie/{${TimeWindow.NAME}}"
+    const val GET_GENRES = "genre/movie/list"
+    const val GET_MOVIE_FOR_GENRES = "discover/movie"
+    const val GET_MOVIE_FOR_TITLE = "search/movie"
 }
 
 object ApiQuery {

@@ -122,7 +122,7 @@
     <style name="Blur">
         <item name="backgroundColorOverlay">@color/blur_background</item>
         <item name="blur">15</item>
-        <item name="cornerRadiusView">@dimen/medium_radius</item>
+        <item name="cornerRadiusView">@dimen/small_radius</item>
         <item name="startColorGradient">@color/border_gradient_start_color</item>
         <item name="strokeWidth">@dimen/view_stroke_width</item>
     </style>

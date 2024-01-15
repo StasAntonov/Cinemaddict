@@ -10,7 +10,6 @@ import androidx.paging.cachedIn
 import com.example.cinemaddict.common.paging.MovPagingSource
 import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.domain.entity.GenreData
-import com.example.cinemaddict.domain.mapper.toGenreData
 import com.example.cinemaddict.domain.usecase.GenreUseCase
 import com.example.cinemaddict.domain.usecase.MovieForTitleUseCase
 import com.example.cinemaddict.network.ApiResponse
@@ -82,7 +81,7 @@ class DiscoverViewModel @Inject constructor(
                     }
 
                     is ApiResponse.Success -> {
-                        _genre.postValue(it.data.genres.map { g -> g.toGenreData() })
+                        _genre.postValue(it.data.genres)
                     }
                 }
             }

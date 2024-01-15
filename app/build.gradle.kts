@@ -28,7 +28,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
 
         buildConfigField("String", "ACCESS_KEY", apiKeys["ACCESS_KEY"] as String)
     }
@@ -107,4 +107,7 @@ dependencies {
 
     //Blur
     implementation("jp.wasabeef:glide-transformations:4.3.0")
+
+    // leak canary
+    implementation("com.squareup.leakcanary:leakcanary-android:2.8.1")
 }
