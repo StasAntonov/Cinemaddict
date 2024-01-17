@@ -3,7 +3,6 @@ package com.example.cinemaddict.ui.discover
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cinemaddict.common.paging.MovPagingAdapter
 import com.example.cinemaddict.databinding.FragmentDiscoverBinding
@@ -12,6 +11,7 @@ import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.ext.toast
 import com.example.cinemaddict.ui.base.BaseUiFragment
 import com.example.cinemaddict.ui.discover.adapter.GenrePagerAdapter
+import com.example.cinemaddict.util.LoadStateListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -26,10 +26,17 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
 
     private lateinit var adapter: GenrePagerAdapter
     override val viewModel: DiscoverViewModel by viewModels()
+
     private val movieAdapter: MovPagingAdapter<FilmDiscoverData, ItemDiscoverScreenBinding> by lazy {
         MovPagingAdapter(
             bindingInflater = ItemDiscoverScreenBinding::inflate,
             onClickListener = ::navigateToDetailScreen
+        )
+    }
+    private val stateListener: LoadStateListener<FilmDiscoverData, ItemDiscoverScreenBinding> by lazy {
+        LoadStateListener(
+            adapter = movieAdapter,
+            toastCallback = ::toast
         )
     }
 
@@ -47,23 +54,9 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
         onRefresh(Dispatchers.Main) {
             viewModel.refresh()
         }
-        movieAdapter.addLoadStateListener { loadState ->
-            if (loadState.refresh is LoadState.Loading ||
-                loadState.append is LoadState.Loading
-            ) {
-                showLoader()
-            } else {
-                hideLoader()
-                val errorState = when {
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
-                errorState?.let {
-                    toast(it.error.toString())
-                }
-            }
+
+        stateListener.isLoad.observe(viewLifecycleOwner){
+            if (it) showLoader() else hideLoader()
         }
     }
 
