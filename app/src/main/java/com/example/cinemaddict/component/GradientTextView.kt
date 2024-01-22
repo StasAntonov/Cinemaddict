@@ -21,8 +21,10 @@ class GradientTextView @JvmOverloads constructor(
     @ColorRes
     private var endColor: Int = R.color.primary_text
 
-    private val linearGradient: LinearGradient by lazy {
-        LinearGradient(
+    private var useGradient: Boolean = false
+
+    private val linearGradient: LinearGradient
+        get() = LinearGradient(
             0f,
             0f,
             width.toFloat(),
@@ -31,24 +33,43 @@ class GradientTextView @JvmOverloads constructor(
             ContextCompat.getColor(context, endColor),
             Shader.TileMode.CLAMP
         )
-    }
+
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.GradientTextView, defStyleAttr, 0).let {
             startColor = it.getResourceId(R.styleable.GradientTextView_startColor, startColor)
             endColor = it.getResourceId(R.styleable.GradientTextView_endColor, endColor)
+            useGradient = it.getBoolean(R.styleable.GradientTextView_useGradient, useGradient)
             it.recycle()
+        }
+        if (useGradient) {
+            enableGradient()
         }
     }
 
-    override fun onLayout(
-        changed: Boolean, left: Int, top: Int, right: Int,
-        bottom: Int
-    ) {
-        super.onLayout(changed, left, top, right, bottom)
+    fun enableGradient() {
+        useGradient = true
+        applyGradient()
+    }
 
-        if (changed) {
+    fun disableGradient() {
+        useGradient = false
+        paint.shader = null
+        setTextColor(ContextCompat.getColor(context, R.color.primary_text))
+        invalidate()
+    }
+
+    private fun applyGradient() {
+        if (useGradient) {
             paint.shader = linearGradient
+        }
+        invalidate()
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        if (useGradient) {
+            applyGradient()
         }
     }
 }

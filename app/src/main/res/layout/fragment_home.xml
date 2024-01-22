@@ -25,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/xx_big_margin"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginTop="@dimen/x_large_margin"
                     android:text="@string/home_stream"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/xx_big_margin"
-                    android:layout_marginTop="@dimen/xxx_big_margin"
+                    android:layout_marginTop="36dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_watch_title_gradient" />
 
                 <androidx.appcompat.widget.AppCompatButton
