@@ -1,6 +1,6 @@
 package com.example.cinemaddict.ui.discover
 
-import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -44,7 +44,8 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
         super.initViews()
         binding.viewModel = viewModel
         binding.rvList.apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager =
+                StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
             adapter = movieAdapter
         }
     }
@@ -55,7 +56,7 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
             viewModel.refresh()
         }
 
-        stateListener.isLoad.observe(viewLifecycleOwner){
+        stateListener.isLoad.observe(viewLifecycleOwner) {
             if (it) showLoader() else hideLoader()
         }
     }
@@ -81,13 +82,9 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
         }
 
         viewModel.searchText.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()) {
-                isGetMovie(true)
-                viewModel.getMovie(it)
-            } else {
-                isGetMovie(false)
-                viewModel.getMovie("")
-            }
+            setVisibility(it.isNotEmpty())
+            viewModel.getMovie(it ?: "")
+
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -99,17 +96,11 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
         }
     }
 
-    private fun isGetMovie(isGet: Boolean) {
+    private fun setVisibility(isVisible: Boolean) {
         binding.apply {
-            if (isGet) {
-                tlGenre.visibility = View.GONE
-                pullToRefresh.visibility = View.GONE
-                rvList.visibility = View.VISIBLE
-            } else {
-                rvList.visibility = View.GONE
-                tlGenre.visibility = View.VISIBLE
-                pullToRefresh.visibility = View.VISIBLE
-            }
+            tlGenre.isVisible = !isVisible
+            pullToRefresh.isVisible = !isVisible
+            rvList.isVisible = isVisible
         }
     }
 
@@ -117,5 +108,9 @@ class DiscoverFragment : BaseUiFragment<FragmentDiscoverBinding>(FragmentDiscove
         movieAdapter.getItemByPosition(position)?.let {
             navigate(DiscoverFragmentDirections.showDetails())
         }
+    }
+
+    companion object {
+        private const val SPAN_COUNT = 2
     }
 }
