@@ -27,6 +27,7 @@
     <color name="cursor_color">#FF8F71</color>
     <color name="search_view_background">#211F30</color>
     <color name="hint">#BBBBBB</color>
+    <color name="iconColor">#FFFFFF</color>
 
     <!--    search view-->
     <color name="indicator_color">#FF8F71</color>

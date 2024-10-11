@@ -19,4 +19,11 @@ interface DiscoverApi {
         @Query(ApiQuery.WITH_GENRES) genre: String
     ): Response<MovPagingResponseWrapper<MovieResponse>>
 
+
+    @GET(ApiEndpoint.GET_MOVIE_FOR_TITLE)
+    suspend fun getMovieForTitle(
+        @Query(ApiQuery.QUERY) query: String,
+        @Query(Pagination.PAGE) page: Int
+    ): Response<MovPagingResponseWrapper<MovieResponse>>
+
 }

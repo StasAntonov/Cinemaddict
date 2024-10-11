@@ -13,4 +13,9 @@ interface MovieRepository {
         genre: String,
         sortBy: String
     ): ApiResponse<MovPagingDataWrapper<FilmDiscoverData>>
+
+    suspend fun getMovieForTitle(
+        page: Int = 1,
+        query: String
+    ): ApiResponse<MovPagingDataWrapper<FilmDiscoverData>>
 }

@@ -3,17 +3,28 @@ package com.example.cinemaddict.ui.discover
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.cinemaddict.common.paging.MovPagingSource
+import com.example.cinemaddict.domain.entity.FilmDiscoverData
 import com.example.cinemaddict.domain.entity.GenreData
 import com.example.cinemaddict.domain.usecase.GenreUseCase
+import com.example.cinemaddict.domain.usecase.MovieForTitleUseCase
 import com.example.cinemaddict.network.ApiResponse
 import com.example.cinemaddict.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DiscoverViewModel @Inject constructor(
-    private val genreUseCase: GenreUseCase
+    private val genreUseCase: GenreUseCase,
+    private val movieUseCase: MovieForTitleUseCase
 ) : BaseViewModel() {
 
     private var _genre = MutableLiveData<List<GenreData>>()
@@ -22,8 +33,43 @@ class DiscoverViewModel @Inject constructor(
     private var _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    val searchText = MutableLiveData<String>()
+
+    private var lastQuery: String = ""
+
+    private val _dataFilm = MutableStateFlow<PagingData<FilmDiscoverData>>(PagingData.empty())
+    val dataFilm: StateFlow<PagingData<FilmDiscoverData>> get() = _dataFilm
+
     init {
         getGenres()
+    }
+
+    fun getMovie(title: String) {
+        if (title != "") {
+            if (title != lastQuery) {
+                viewModelScope.launch {
+                    Pager(
+                        config = PagingConfig(pageSize = PAGE_SIZE),
+                        pagingSourceFactory = {
+                            MovPagingSource { page ->
+                                movieUseCase.getMovieForTitle(
+                                    page = page,
+                                    query = title
+                                )
+                            }
+                        }
+                    ).flow
+                        .cachedIn(viewModelScope)
+                        .collectLatest { newData ->
+                            _dataFilm.value = newData
+                        }
+                }
+            } else return
+
+        } else {
+            _dataFilm.value = PagingData.empty()
+        }
+        lastQuery = title
     }
 
     private fun getGenres() {
@@ -44,6 +90,13 @@ class DiscoverViewModel @Inject constructor(
 
     fun refresh() {
         getGenres()
+        if (lastQuery.isNotEmpty()) {
+            getMovie(lastQuery)
+        }
+    }
+
+    companion object {
+        private const val PAGE_SIZE = 20
     }
 
 }
